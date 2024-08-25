@@ -1,0 +1,21 @@
+/node_modules/
+2020-smb1-last1000/input/discord-log.txt
+2020-smb1-last1000/output/
+2020-smb1-last1000/output */
+2020-smb1-last1000/json/
+2020-smb1-last100/
+
+maker-level-num/json/
+
+2020-smb3-last1000/input/discord-log.txt
+2020-smb3-last1000/output/
+2020-smb3-last1000/output */
+2020-smb3-last1000/json/
+2020-smb3-last100/
+
+2020-last10000/input/discord-log.txt
+2020-last10000/output/
+2020-last10000/json/
+
+temp/
+test/

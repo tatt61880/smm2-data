@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "smm2-data",
+  "version": "1.0.0",
+  "description": "smm2-data Tool by tatt61880",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tatt61880/smm2-data.git"
+  },
+  "author": "@tatt61880",
+  "bugs": {
+    "url": "https://github.com/tatt61880/smm2-data/issues"
+  },
+  "homepage": "https://github.com/tatt61880/smm2-data#readme",
+  "scripts": {
+    "eslint": "eslint ./src/*.js --fix",
+    "htmlhint": "htmlhint ./*.html",
+    "stylelint": "stylelint ./css/*.css --fix"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/eslint-parser": "^7.18.9",
+    "eslint": "^8.21.0",
+    "htmlhint": "^1.1.4",
+    "stylelint": "^14.9.1",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-standard": "^26.0.0"
+  }
+}
