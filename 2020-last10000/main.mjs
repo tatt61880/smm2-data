@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-unused-vars */
 import fs from 'fs';
 
 const idsText = fs.readFileSync('./input/level-ids.txt', 'utf-8');
@@ -24,8 +26,8 @@ const conditionLevelNums = new Map();
 let count = 0;
 let totalClearCheckTime = 0;
 for (const id of ids) {
-  const id_ = id.replaceAll('-', '');
-  const filename = `./json/${id_}.json`;
+  const id_short = id.replaceAll('-', '');
+  const filename = `./json/${id_short}.json`;
 
   try {
     const jsonText = fs.readFileSync(filename, 'utf-8');
