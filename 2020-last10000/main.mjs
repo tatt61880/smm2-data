@@ -1,9 +1,9 @@
 import fs from 'fs';
 
-const idsText = fs.readFileSync(`./input/level-ids.txt`, 'utf-8');
+const idsText = fs.readFileSync('./input/level-ids.txt', 'utf-8');
 const ids = idsText.split(/\r?\n/).filter((line) => /^\w{3}-\w{3}-\w{3}$/.test(line));
 
-const unixTimeForComparing = new Date('2020-03-21T00:00:00').getTime() / 1000 - 9 * 3600;  // 比較用の Unix time (※ process.env.TZ = 'Asia/Tokyo' の環境で実行する前提で調整しています。)
+const unixTimeForComparing = new Date('2020-03-21T00:00:00').getTime() / 1000 - 9 * 3600; // 比較用の Unix time (※ process.env.TZ = 'Asia/Tokyo' の環境で実行する前提で調整しています。)
 // console.log(unixTimeForComparing);
 
 const makerInfo = false;
@@ -23,7 +23,7 @@ const conditionLevelNums = new Map();
 
 let count = 0;
 let totalClearCheckTime = 0;
-for (let id of ids) {
+for (const id of ids) {
   const id_ = id.replaceAll('-', '');
   const filename = `./json/${id_}.json`;
 
@@ -32,11 +32,11 @@ for (let id of ids) {
     const json = JSON.parse(jsonText);
 
     const levelName = json.name;
-    const uploaded = json.uploaded;  // 投稿日時の Unix Time
+    const uploaded = json.uploaded; // 投稿日時の Unix Time
 
-    const upload_time = json.upload_time;  // 10000 = 10 seconds.
-    const style_name = json.game_style_name;  // 'SMB1', 'SMB3', 'SMW', 'NSMBU', 'SM3DW'
-    const theme_name = json.theme_name;  // 'Castle', 'Ghost house', 'Airship', 'Overworld', 'Sky', 'Desert', 'Snow', 'Underground'
+    const upload_time = json.upload_time; // 10000 = 10 seconds.
+    const style_name = json.game_style_name; // 'SMB1', 'SMB3', 'SMW', 'NSMBU', 'SM3DW'
+    const theme_name = json.theme_name; // 'Castle', 'Ghost house', 'Airship', 'Overworld', 'Sky', 'Desert', 'Snow', 'Underground'
 
     const tags_name = json.tags_name;
     const tag1_name = tags_name[0];
@@ -46,7 +46,7 @@ for (let id of ids) {
 
     const clears = json.clears;
     const attempts = json.attempts;
-    const plays = json.plays;  // footprints
+    const plays = json.plays; // footprints
     const versus_matches = json.versus_matches;
 
     const comments = json.num_comments;
@@ -54,12 +54,12 @@ for (let id of ids) {
     const likes = json.likes;
     const boos = json.boos;
 
-    const country = json.uploader.country;  // 'US', 'JP', 'MX', ...
+    const country = json.uploader.country; // 'US', 'JP', 'MX', ...
     const uploader_code = json.uploader.code;
     const uploader_name = json.uploader.name;
-    const versus_rank = json.uploader.versus_rank;  // 3 => B
+    const versus_rank = json.uploader.versus_rank; // 3 => B
     const versus_rating = json.uploader.versus_rating;
-    
+
     {
       if (makerInfo) {
         makerCodeToName.set(uploader_code, uploader_name);
@@ -138,8 +138,8 @@ for (let id of ids) {
 console.log(`count = ${count}`);
 
 if (makerInfo) {
-  console.log(`----------------------------------------`);
-  console.log(`Maker info`);
+  console.log('----------------------------------------');
+  console.log('Maker info');
   let count2 = 0;
   const nums = new Map();
   for (const uploader_code of [...makerLevelNums.keys()].sort((a, b) => makerLevelNums.get(b) - makerLevelNums.get(a))) {
@@ -155,9 +155,9 @@ if (makerInfo) {
       count2++;
     }
   }
-  
+
   console.log(`count2 = ${count2}`);
-  
+
   console.log('');
   let sum = 0;
   for (const num of [...nums.keys()].sort((a, b) => nums.get(a) - nums.get(b))) {
@@ -165,60 +165,60 @@ if (makerInfo) {
     sum += count3;
     console.log(`${num}: ${count3}`);
   }
-  console.log(`(1+: ${sum})`); 
-  console.log(`(2+: ${sum - nums.get(1)})`); 
+  console.log(`(1+: ${sum})`);
+  console.log(`(2+: ${sum - nums.get(1)})`);
 }
 
 if (countryInfo) {
-  console.log(`----------------------------------------`);
-  console.log(`Country info`);
+  console.log('----------------------------------------');
+  console.log('Country info');
 
   for (const country of [...countryLevelNums.keys()].sort((a, b) => countryLevelNums.get(b) - countryLevelNums.get(a))) {
-  const num = countryLevelNums.get(country);
-  console.log(`${country}: ${num}`);
+    const num = countryLevelNums.get(country);
+    console.log(`${country}: ${num}`);
   }
 }
 
 if (styleInfo) {
-  console.log(`----------------------------------------`);
-  console.log(`Style info`);
+  console.log('----------------------------------------');
+  console.log('Style info');
 
   for (const style_name of [...styleLevelNums.keys()].sort((a, b) => styleLevelNums.get(b) - styleLevelNums.get(a))) {
-  const num = styleLevelNums.get(style_name);
-  console.log(`${style_name}: ${num}`);
+    const num = styleLevelNums.get(style_name);
+    console.log(`${style_name}: ${num}`);
   }
 }
 
 if (themeInfo) {
-  console.log(`----------------------------------------`);
-  console.log(`Theme info`);
+  console.log('----------------------------------------');
+  console.log('Theme info');
 
   for (const theme_name of [...themeLevelNums.keys()].sort((a, b) => themeLevelNums.get(b) - themeLevelNums.get(a))) {
-  const num = themeLevelNums.get(theme_name);
-  console.log(`${theme_name}: ${num}`);
+    const num = themeLevelNums.get(theme_name);
+    console.log(`${theme_name}: ${num}`);
   }
 }
 
 if (tagInfo) {
-  console.log(`----------------------------------------`);
-  console.log(`Tag info`);
+  console.log('----------------------------------------');
+  console.log('Tag info');
 
   for (const tag_name of [...tagLevelNums.keys()].sort((a, b) => tagLevelNums.get(b) - tagLevelNums.get(a))) {
-  const num = tagLevelNums.get(tag_name);
-  console.log(`${tag_name}: ${num}`);
+    const num = tagLevelNums.get(tag_name);
+    console.log(`${tag_name}: ${num}`);
   }
 }
 
 if (conditionInfo) {
-  console.log(`----------------------------------------`);
-  console.log(`Condition info`);
+  console.log('----------------------------------------');
+  console.log('Condition info');
 
   for (const condition_name of [...conditionLevelNums.keys()].sort((a, b) => conditionLevelNums.get(b) - conditionLevelNums.get(a))) {
-  const num = conditionLevelNums.get(condition_name);
-  console.log(`${condition_name}: ${num}`);
+    const num = conditionLevelNums.get(condition_name);
+    console.log(`${condition_name}: ${num}`);
   }
 }
 
-console.log(`----------------------------------------`);
-console.log(`Level nums: ${ids.length}`)
+console.log('----------------------------------------');
+console.log(`Level nums: ${ids.length}`);
 console.log(`Total Clear-check time: ${totalClearCheckTime} (${ids.length} levels)`);
