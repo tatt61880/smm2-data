@@ -1,8 +1,8 @@
-import https from "https";
+import https from 'https';
 import fs from 'fs';
 import { setTimeout } from 'node:timers/promises';
 
-const idsText = fs.readFileSync(`./input/level-ids.txt`, 'utf-8');
+const idsText = fs.readFileSync('./input/level-ids.txt', 'utf-8');
 const ids = idsText.split(/\r?\n/).filter((line) => /^\w{3}-\w{3}-\w{3}$/.test(line));
 
 let count = 0;
@@ -27,23 +27,23 @@ for (let id of ids) {
   }
 
   https.get(url, (res) => {
-      if (res.statusCode !== 200) {
-        console.error(`Error: ${id}`);
-        breakFlag = true;
-        return;
-      }
+    if (res.statusCode !== 200) {
+      console.error(`Error: ${id}`);
+      breakFlag = true;
+      return;
+    }
 
-      let body = '';
+    let body = '';
 
-      res.on('data', function (d) {
-        body += d;
-      });
-      
-      res.on('end', function () {
-        fs.writeFileSync(outputFilename, body);
-      })
+    res.on('data', function (d) {
+      body += d;
+    });
+
+    res.on('end', function () {
+      fs.writeFileSync(outputFilename, body);
+    });
   })
-  .on("error", (e) => {
+    .on('error', (e) => {
       console.error(e);
-  });
+    });
 }
