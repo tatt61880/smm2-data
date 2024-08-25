@@ -11,7 +11,7 @@ const countryInfo = false;
 const styleInfo = false;
 const themeInfo = false;
 const tagInfo = false;
-const conditionInfo = true;
+const conditionInfo = false;
 
 const makerLevelNums = new Map();
 const makerCodeToName = new Map();
