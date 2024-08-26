@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import fs from 'fs';
 
-const idsText = fs.readFileSync('./input/level-ids.txt', 'utf-8');
+const idsText = fs.readFileSync('./output/uncleared-levels.txt', 'utf-8');
 const ids = idsText.split(/\r?\n/).filter((line) => /^\w{3}-\w{3}-\w{3}$/.test(line));
 
 const unixTimeForComparing = new Date('2020-03-21T00:00:00').getTime() / 1000 - 9 * 3600; // 比較用の Unix time (※ process.env.TZ = 'Asia/Tokyo' の環境で実行する前提で調整しています。)
@@ -25,6 +25,7 @@ const conditionLevelNums = new Map();
 
 let count = 0;
 let totalClearCheckTime = 0;
+let totalAttempts = 0;
 for (const id of ids) {
   const id_short = id.replaceAll('-', '');
   const filename = `./json/${id_short}.json`;
@@ -57,7 +58,7 @@ for (const id of ids) {
     const boos = json.boos;
 
     const country = json.uploader.country; // 'US', 'JP', 'MX', ...
-    const uploader_code = json.uploader.code;
+    const uploader_code = json.uploader.code; // MYP08K3NF
     const uploader_name = json.uploader.name;
     const versus_rank = json.uploader.versus_rank; // 3 => B
     const versus_rating = json.uploader.versus_rating;
@@ -123,6 +124,7 @@ for (const id of ids) {
     }
 
     totalClearCheckTime += upload_time;
+    totalAttempts += attempts;
 
     // if (/トロール/.test(levelName)) {
     // if (comments > 10) {
@@ -223,4 +225,5 @@ if (conditionInfo) {
 
 console.log('----------------------------------------');
 console.log(`Level nums: ${ids.length}`);
-console.log(`Total Clear-check time: ${totalClearCheckTime} (${ids.length} levels)`);
+console.log(`Total Clear-check time: ${totalClearCheckTime / 1000} seconds (${ids.length} levels)`);
+console.log(`Total Attempts (old data): ${totalAttempts} (${ids.length} levels)`);
