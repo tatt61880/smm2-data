@@ -2,7 +2,7 @@ import https from 'https';
 import fs from 'fs';
 import { setTimeout } from 'node:timers/promises';
 
-// const idsText = fs.readFileSync(`./input/level-ids.txt`, 'utf-8');
+// const idsText = fs.readFileSync('./input/level-ids.txt', 'utf-8');
 const idsText = fs.readFileSync('./output/cleared-levels.txt', 'utf-8');
 const ids = idsText.split(/\r?\n/).filter((line) => /^\w{3}-\w{3}-\w{3}$/.test(line));
 

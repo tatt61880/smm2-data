@@ -29,10 +29,10 @@ my %userMinNum;
 
             if (defined $levelsUser{$levelId}) {
                 if ($levelsUser{$levelId} ne $userName) {
-                    print STDERR "$levelId $levelsUser{$levelId} ne $userName\n";
+                    print STDERR "There are multi result for one level ($levelId) and their user name of the clears aren't same. $levelsUser{$levelId} ne $userName\n";
                 }
                 if (defined $levelsNum{$levelId} && $levelsNum{$levelId} != $num) {
-                    print STDERR "$levelId $levelsNum{$levelId} != $num\n";
+                    print STDERR "There are multi result for one level ($levelId): $levelsNum{$levelId} != $num\n";
                 }
             } else {
                 $levelsUser{$levelId} = $userName;
@@ -64,6 +64,7 @@ my %userMinNum;
 }
 
 my %userNum;
+my @clearedLevels;
 my @unclearedLevels;
 
 {
@@ -83,6 +84,7 @@ my @unclearedLevels;
             push @unclearedLevels, $levelId;
             next;
         }
+        push @clearedLevels, $levelId;
 
         my $num = $levelsNum{$levelId};
         unless (defined $userMinNum{$userName}) {
@@ -132,6 +134,18 @@ my $unclearedNum = @unclearedLevels;
     binmode FOUT, ":utf8";
 
     for my $levelId (@unclearedLevels) {
+        print FOUT "$levelId\n";
+    }
+
+    close FOUT;
+}
+
+{
+    my $output = "output\\cleared-levels.txt";
+    open FOUT, ">$output" or die;
+    binmode FOUT, ":utf8";
+
+    for my $levelId (@clearedLevels) {
         print FOUT "$levelId\n";
     }
 
