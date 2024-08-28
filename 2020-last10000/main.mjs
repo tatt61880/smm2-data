@@ -147,7 +147,7 @@ console.log(`count = ${count}`);
 
 if (makerInfo) {
   console.log('----------------------------------------');
-  console.log('Maker info');
+  console.log('# Maker info');
   let count2 = 0;
   const nums = new Map();
   const threshold = 4;
@@ -179,7 +179,7 @@ if (makerInfo) {
 
 if (countryInfo) {
   console.log('----------------------------------------');
-  console.log('Country info');
+  console.log('# Country info');
 
   for (const country of [...countryLevelNums.keys()].sort((a, b) => countryLevelNums.get(b) - countryLevelNums.get(a))) {
     const num = countryLevelNums.get(country);
@@ -189,7 +189,7 @@ if (countryInfo) {
 
 if (styleInfo) {
   console.log('----------------------------------------');
-  console.log('Style info');
+  console.log('# Style info');
 
   for (const style_name of [...styleLevelNums.keys()].sort((a, b) => styleLevelNums.get(b) - styleLevelNums.get(a))) {
     const num = styleLevelNums.get(style_name);
@@ -199,7 +199,7 @@ if (styleInfo) {
 
 if (themeInfo) {
   console.log('----------------------------------------');
-  console.log('Theme info');
+  console.log('# Theme info');
 
   for (const theme_name of [...themeLevelNums.keys()].sort((a, b) => themeLevelNums.get(b) - themeLevelNums.get(a))) {
     const num = themeLevelNums.get(theme_name);
@@ -209,7 +209,7 @@ if (themeInfo) {
 
 if (tagInfo) {
   console.log('----------------------------------------');
-  console.log('Tag info');
+  console.log('# Tag info');
 
   for (const tag_name of [...tagLevelNums.keys()].sort((a, b) => tagLevelNums.get(b) - tagLevelNums.get(a))) {
     const num = tagLevelNums.get(tag_name);
@@ -219,7 +219,7 @@ if (tagInfo) {
 
 if (conditionInfo) {
   console.log('----------------------------------------');
-  console.log('Condition info');
+  console.log('# Condition info');
 
   let count3 = 0;
   for (const condition_name of [...conditionLevelNums.keys()].sort((a, b) => conditionLevelNums.get(b) - conditionLevelNums.get(a))) {
