@@ -8,12 +8,12 @@ const ids = idsText.split(/\r?\n/).filter((line) => /^\w{3}-\w{3}-\w{3}$/.test(l
 const unixTimeForComparing = new Date('2020-03-21T00:00:00').getTime() / 1000 - 9 * 3600; // 比較用の Unix time (※ process.env.TZ = 'Asia/Tokyo' の環境で実行する前提で調整しています。)
 // console.log(unixTimeForComparing);
 
-const makerInfo = false;
-const countryInfo = false;
-const styleInfo = false;
-const themeInfo = false;
-const tagInfo = false;
-const conditionInfo = false;
+const makerInfo = true;
+const countryInfo = true;
+const styleInfo = true;
+const themeInfo = true;
+const tagInfo = true;
+const conditionInfo = true;
 
 const makerLevelNums = new Map();
 const makerCodeToName = new Map();
@@ -27,14 +27,15 @@ let count = 0;
 let totalClearCheckTime = 0;
 let totalAttempts = 0;
 for (const id of ids) {
-  const id_short = id.replaceAll('-', '');
-  const filename = `./json/${id_short}.json`;
+  const idShort = id.replaceAll('-', '');
+  const filename = `./json/${idShort}.json`;
 
   try {
     const jsonText = fs.readFileSync(filename, 'utf-8');
     const json = JSON.parse(jsonText);
 
     const levelName = json.name;
+    const description = json.description;
     const uploaded = json.uploaded; // 投稿日時の Unix Time
 
     const upload_time = json.upload_time; // 10000 = 10 seconds.
@@ -130,7 +131,10 @@ for (const id of ids) {
     // if (comments > 10) {
     // if (condition_name === 'Reach the goal without landing after leaving the ground.') {
     // if (tag1_name === 'Link' || tag2_name === 'Link') {
-    if (versus_rating > 6500) {
+    // if (versus_rating > 6500) {
+    // if (condition_name === 'Reach the goal after defeating at least/all (n) Piranha Creeper(s).') {
+    if (uploader_code === 'V5QDJDMKG' || uploader_code === 'FCC5F831G' || uploader_code === '29BJC44TF') {
+    // if (uploader_code === '0YKRH4JDG') {
       console.log(`${id}\t${versus_rating}\t${levelName}`);
       count++;
     }
@@ -217,10 +221,14 @@ if (conditionInfo) {
   console.log('----------------------------------------');
   console.log('Condition info');
 
+  let count3 = 0;
   for (const condition_name of [...conditionLevelNums.keys()].sort((a, b) => conditionLevelNums.get(b) - conditionLevelNums.get(a))) {
+    if (condition_name === undefined) continue;
+    count3++;
     const num = conditionLevelNums.get(condition_name);
     console.log(`${condition_name}: ${num}`);
   }
+  console.log(`${count3} types of condition remaining.`);
 }
 
 console.log('----------------------------------------');

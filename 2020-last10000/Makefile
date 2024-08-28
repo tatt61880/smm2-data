@@ -1,4 +1,5 @@
 all:
 	perl main.pl
-	node get-json.mjs
 	node main.mjs
+	node get-json.mjs
+	node clear-check.mjs
