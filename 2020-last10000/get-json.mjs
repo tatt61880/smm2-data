@@ -22,7 +22,7 @@ for (let id of ids) {
   console.log(`${count} ${id}`);
 
   if (waitFlag) {
-    await setTimeout(8000);
+    await setTimeout(15000);
   } else {
     waitFlag = true;
   }
