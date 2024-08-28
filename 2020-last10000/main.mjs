@@ -150,6 +150,7 @@ if (makerInfo) {
   console.log('Maker info');
   let count2 = 0;
   const nums = new Map();
+  const threshold = 4;
   for (const uploader_code of [...makerLevelNums.keys()].sort((a, b) => makerLevelNums.get(b) - makerLevelNums.get(a))) {
     const name = makerCodeToName.get(uploader_code);
     const num = makerLevelNums.get(uploader_code);
@@ -158,15 +159,14 @@ if (makerInfo) {
     } else {
       nums.set(num, 1);
     }
-    if (num > 3) {
+    if (num >= threshold) {
       console.log(`${uploader_code}: ${num} ${name}`);
       count2++;
     }
   }
+  console.log(`Number of makers who have ${threshold}+ levels: ${count2}`);
 
-  console.log(`count2 = ${count2}`);
-
-  console.log('');
+  console.log('levels: makers');
   let sum = 0;
   for (const num of [...nums.keys()].sort((a, b) => nums.get(a) - nums.get(b))) {
     const count3 = nums.get(num);
