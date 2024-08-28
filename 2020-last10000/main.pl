@@ -106,7 +106,7 @@ my $unclearedNum = @unclearedLevels;
     open FOUT, ">$output" or die;
     binmode FOUT, ":utf8";
 
-    print FOUT "Contributor ranking for last 100 levels of 2020 SMB1.\n";
+    print FOUT "Contributor ranking for last 10,000 levels of 2020.\n";
     print FOUT "```\n";
 
     for my $userName (sort {
