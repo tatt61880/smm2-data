@@ -31,6 +31,7 @@ for (let id of ids) {
     if (res.statusCode !== 200) {
       console.error(`Error: ${id}`);
       breakFlag = true;
+      process.exitCode = 1;
       return;
     }
 
