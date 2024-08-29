@@ -133,9 +133,12 @@ for (const id of ids) {
     // if (tag1_name === 'Link' || tag2_name === 'Link') {
     // if (versus_rating > 6500) {
     // if (condition_name === 'Reach the goal after defeating at least/all (n) Piranha Creeper(s).') {
-    if (uploader_code === 'V5QDJDMKG' || uploader_code === 'FCC5F831G' || uploader_code === '29BJC44TF') {
+    // if (uploader_code === 'V5QDJDMKG' || uploader_code === 'FCC5F831G' || uploader_code === '29BJC44TF') {
     // if (uploader_code === '0YKRH4JDG') {
-      console.log(`${id}\t${versus_rating}\t${levelName}`);
+    // if (attempts < 10) {
+    // if (tag1_name === 'Multiplayer versus') {
+    if (upload_time > 330 * 1000) {
+      console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\t${levelName}`);
       count++;
     }
   } catch (err) {
@@ -151,6 +154,7 @@ if (makerInfo) {
   let count2 = 0;
   const nums = new Map();
   const threshold = 4;
+  let current = -1;
   for (const uploader_code of [...makerLevelNums.keys()].sort((a, b) => makerLevelNums.get(b) - makerLevelNums.get(a))) {
     const name = makerCodeToName.get(uploader_code);
     const num = makerLevelNums.get(uploader_code);
@@ -160,13 +164,21 @@ if (makerInfo) {
       nums.set(num, 1);
     }
     if (num >= threshold) {
+      if (current !== num) {
+        if (current !== -1) {
+          console.log('```');
+        }
+        current = num;
+        console.log(`## Makers with ${num} levels`);
+        console.log('```');
+      }
       console.log(`${uploader_code}: ${num} ${name}`);
       count2++;
     }
   }
-  console.log(`Number of makers who have ${threshold}+ levels: ${count2}`);
+  console.log('```');
 
-  console.log('levels: makers');
+  console.log('## levels: makers');
   let sum = 0;
   for (const num of [...nums.keys()].sort((a, b) => nums.get(a) - nums.get(b))) {
     const count3 = nums.get(num);
