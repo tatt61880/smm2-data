@@ -172,7 +172,7 @@ if (makerInfo) {
         console.log(`## Makers with ${num} levels`);
         console.log('```');
       }
-      console.log(`${uploader_code}: ${num} ${name}`);
+      console.log(`${uploader_code}: ${name}`);
       count2++;
     }
   }
