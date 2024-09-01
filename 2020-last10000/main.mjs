@@ -137,7 +137,9 @@ for (const id of ids) {
     // if (uploader_code === '0YKRH4JDG') {
     // if (attempts < 10) {
     // if (tag1_name === 'Multiplayer versus') {
-    if (upload_time > 330 * 1000) {
+    // if (uploader_code === 'KVPCT605G') {
+    if (/KR9KWWTFG|RGD82M0JG|L79LK399G|TXD9GBLHG|0550D63PF|6PCSN6GJF|SV73Q7H0H|K6D3YSTSF|XKXG9XHPG|48665LV0G|WMM082L5G|8JDJ7R7MG|1QGJNY0YF|0YKRH4JDG/.test(uploader_code)) {
+    // if (upload_time > 330 * 1000) {
       console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\t${levelName}`);
       count++;
     }
@@ -184,16 +186,16 @@ if (makerInfo) {
   console.log('');
   console.log('## Maker info');
   let count2 = 0;
-  const nums = new Map();
+  const levelNumMap = new Map();
   const threshold = 4;
   let current = -1;
   for (const uploader_code of [...makerLevelNums.keys()].sort((a, b) => makerLevelNums.get(b) - makerLevelNums.get(a))) {
     const name = makerCodeToName.get(uploader_code);
     const num = makerLevelNums.get(uploader_code);
-    if (nums.has(num)) {
-      nums.set(num, nums.get(num) + 1);
+    if (levelNumMap.has(num)) {
+      levelNumMap.set(num, levelNumMap.get(num) + 1);
     } else {
-      nums.set(num, 1);
+      levelNumMap.set(num, 1);
     }
     if (num >= threshold) {
       if (current !== num) {
@@ -210,15 +212,17 @@ if (makerInfo) {
   }
   console.log('```');
 
-  console.log('### levels: makers');
+  console.log('### Levels: Makers');
   let sum = 0;
-  for (const num of [...nums.keys()].sort((a, b) => nums.get(a) - nums.get(b))) {
-    const count3 = nums.get(num);
-    sum += count3;
-    console.log(`${num}: ${count3}`);
+  for (const levelNum of [...levelNumMap.keys()].sort((a, b) => levelNumMap.get(a) - levelNumMap.get(b))) {
+    const makerNum = levelNumMap.get(levelNum);
+    sum += makerNum;
+    if (sum === makerNum) {
+      console.log(`${levelNum}: ${makerNum}`);
+    } else {
+      console.log(`${levelNum}: ${makerNum} (${levelNum}+: ${sum})`);
+    }
   }
-  console.log(`(1+: ${sum})`);
-  console.log(`(2+: ${sum - nums.get(1)})`);
 }
 
 if (tagInfo) {
