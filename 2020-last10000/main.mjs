@@ -8,18 +8,20 @@ const ids = idsText.split(/\r?\n/).filter((line) => /^\w{3}-\w{3}-\w{3}$/.test(l
 const unixTimeForComparing = new Date('2020-03-21T00:00:00').getTime() / 1000 - 9 * 3600; // 比較用の Unix time (※ process.env.TZ = 'Asia/Tokyo' の環境で実行する前提で調整しています。)
 // console.log(unixTimeForComparing);
 
-const makerInfo = true;
 const countryInfo = true;
 const styleInfo = true;
 const themeInfo = true;
+const makerInfo = true;
+const dateInfo = true;
 const tagInfo = true;
 const conditionInfo = true;
 
-const makerLevelNums = new Map();
-const makerCodeToName = new Map();
 const countryLevelNums = new Map();
 const styleLevelNums = new Map();
 const themeLevelNums = new Map();
+const makerLevelNums = new Map();
+const makerCodeToName = new Map();
+const dateLevelNums = new Map();
 const tagLevelNums = new Map();
 const conditionLevelNums = new Map();
 
@@ -38,6 +40,7 @@ for (const id of ids) {
     const description = json.description;
     const uploaded = json.uploaded; // 投稿日時の Unix Time
 
+    const date = json.uploaded_pretty.split(' ')[0];
     const upload_time = json.upload_time; // 10000 = 10 seconds.
     const style_name = json.game_style_name; // 'SMB1', 'SMB3', 'SMW', 'NSMBU', 'SM3DW'
     const theme_name = json.theme_name; // 'Castle', 'Ghost house', 'Airship', 'Overworld', 'Sky', 'Desert', 'Snow', 'Underground'
@@ -99,6 +102,14 @@ for (const id of ids) {
         }
       }
 
+      if (dateInfo) {
+        if (dateLevelNums.has(date)) {
+          dateLevelNums.set(date, dateLevelNums.get(date) + 1);
+        } else {
+          dateLevelNums.set(date, 1);
+        }
+      }
+
       if (tagInfo) {
         if (tagLevelNums.has(tag1_name)) {
           tagLevelNums.set(tag1_name, tagLevelNums.get(tag1_name) + 1);
@@ -132,15 +143,16 @@ for (const id of ids) {
     // if (condition_name === 'Reach the goal without landing after leaving the ground.') {
     // if (tag1_name === 'Link' || tag2_name === 'Link') {
     // if (versus_rating > 6500) {
-    // if (condition_name === 'Reach the goal after defeating at least/all (n) Piranha Creeper(s).') {
+    if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
     // if (uploader_code === 'V5QDJDMKG' || uploader_code === 'FCC5F831G' || uploader_code === '29BJC44TF') {
     // if (uploader_code === '0YKRH4JDG') {
     // if (attempts < 10) {
     // if (tag1_name === 'Multiplayer versus') {
     // if (uploader_code === 'KVPCT605G') {
-    if (/KR9KWWTFG|RGD82M0JG|L79LK399G|TXD9GBLHG|0550D63PF|6PCSN6GJF|SV73Q7H0H|K6D3YSTSF|XKXG9XHPG|48665LV0G|WMM082L5G|8JDJ7R7MG|1QGJNY0YF|0YKRH4JDG/.test(uploader_code)) {
+    // if (/KR9KWWTFG|RGD82M0JG|L79LK399G|TXD9GBLHG|0550D63PF|6PCSN6GJF|SV73Q7H0H|K6D3YSTSF|XKXG9XHPG|48665LV0G|WMM082L5G|8JDJ7R7MG|1QGJNY0YF|0YKRH4JDG/.test(uploader_code)) {
     // if (upload_time > 330 * 1000) {
-      console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\t${levelName}`);
+      // console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\t${levelName}`);
+      console.log(`${id} ${levelName}`);
       count++;
     }
   } catch (err) {
@@ -222,6 +234,15 @@ if (makerInfo) {
     } else {
       console.log(`${levelNum}: ${makerNum} (${levelNum}+: ${sum})`);
     }
+  }
+}
+
+if (dateInfo) {
+  console.log('## Date info');
+
+  for (const date of [...dateLevelNums.keys()].sort((a, b) => dateLevelNums.get(b) - dateLevelNums.get(a))) {
+    const num = dateLevelNums.get(date);
+    console.log(`${date}: ${num}`);
   }
 }
 
