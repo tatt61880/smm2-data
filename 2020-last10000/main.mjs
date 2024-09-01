@@ -178,7 +178,7 @@ if (themeInfo) {
   }
 }
 
-console.log(`Total Clear-check time: ${totalClearCheckTime / 1000} seconds (${ids.length} levels)`);
+console.log(`Total Clear-check time: ${totalClearCheckTime / 1000} seconds! (${ids.length} levels)`);
 
 if (makerInfo) {
   console.log('');
