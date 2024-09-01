@@ -65,16 +65,6 @@ for (const id of ids) {
     const versus_rating = json.uploader.versus_rating;
 
     {
-      if (makerInfo) {
-        makerCodeToName.set(uploader_code, uploader_name);
-
-        if (makerLevelNums.has(uploader_code)) {
-          makerLevelNums.set(uploader_code, makerLevelNums.get(uploader_code) + 1);
-        } else {
-          makerLevelNums.set(uploader_code, 1);
-        }
-      }
-
       if (countryInfo) {
         if (countryLevelNums.has(country)) {
           countryLevelNums.set(country, countryLevelNums.get(country) + 1);
@@ -96,6 +86,16 @@ for (const id of ids) {
           themeLevelNums.set(theme_name, themeLevelNums.get(theme_name) + 1);
         } else {
           themeLevelNums.set(theme_name, 1);
+        }
+      }
+
+      if (makerInfo) {
+        makerCodeToName.set(uploader_code, uploader_name);
+
+        if (makerLevelNums.has(uploader_code)) {
+          makerLevelNums.set(uploader_code, makerLevelNums.get(uploader_code) + 1);
+        } else {
+          makerLevelNums.set(uploader_code, 1);
         }
       }
 
@@ -148,9 +148,41 @@ for (const id of ids) {
 
 console.log(`count = ${count}`);
 
+console.log('');
+console.log(`# Info for last ${ids.length} levels in 2020 :zeropercent:`);
+
+if (countryInfo) {
+  console.log('## Country info');
+
+  for (const country of [...countryLevelNums.keys()].sort((a, b) => countryLevelNums.get(b) - countryLevelNums.get(a))) {
+    const num = countryLevelNums.get(country);
+    console.log(`${country}: ${num}`);
+  }
+}
+
+if (styleInfo) {
+  console.log('## Style info');
+
+  for (const style_name of [...styleLevelNums.keys()].sort((a, b) => styleLevelNums.get(b) - styleLevelNums.get(a))) {
+    const num = styleLevelNums.get(style_name);
+    console.log(`${style_name}: ${num}`);
+  }
+}
+
+if (themeInfo) {
+  console.log('## Theme info');
+
+  for (const theme_name of [...themeLevelNums.keys()].sort((a, b) => themeLevelNums.get(b) - themeLevelNums.get(a))) {
+    const num = themeLevelNums.get(theme_name);
+    console.log(`${theme_name}: ${num}`);
+  }
+}
+
+console.log(`Total Clear-check time: ${totalClearCheckTime / 1000} seconds (${ids.length} levels)`);
+
 if (makerInfo) {
-  console.log('----------------------------------------');
-  console.log('# Maker info');
+  console.log('');
+  console.log('## Maker info');
   let count2 = 0;
   const nums = new Map();
   const threshold = 4;
@@ -178,7 +210,7 @@ if (makerInfo) {
   }
   console.log('```');
 
-  console.log('## levels: makers');
+  console.log('### levels: makers');
   let sum = 0;
   for (const num of [...nums.keys()].sort((a, b) => nums.get(a) - nums.get(b))) {
     const count3 = nums.get(num);
@@ -189,39 +221,8 @@ if (makerInfo) {
   console.log(`(2+: ${sum - nums.get(1)})`);
 }
 
-if (countryInfo) {
-  console.log('----------------------------------------');
-  console.log('# Country info');
-
-  for (const country of [...countryLevelNums.keys()].sort((a, b) => countryLevelNums.get(b) - countryLevelNums.get(a))) {
-    const num = countryLevelNums.get(country);
-    console.log(`${country}: ${num}`);
-  }
-}
-
-if (styleInfo) {
-  console.log('----------------------------------------');
-  console.log('# Style info');
-
-  for (const style_name of [...styleLevelNums.keys()].sort((a, b) => styleLevelNums.get(b) - styleLevelNums.get(a))) {
-    const num = styleLevelNums.get(style_name);
-    console.log(`${style_name}: ${num}`);
-  }
-}
-
-if (themeInfo) {
-  console.log('----------------------------------------');
-  console.log('# Theme info');
-
-  for (const theme_name of [...themeLevelNums.keys()].sort((a, b) => themeLevelNums.get(b) - themeLevelNums.get(a))) {
-    const num = themeLevelNums.get(theme_name);
-    console.log(`${theme_name}: ${num}`);
-  }
-}
-
 if (tagInfo) {
-  console.log('----------------------------------------');
-  console.log('# Tag info');
+  console.log('## Tag info');
 
   for (const tag_name of [...tagLevelNums.keys()].sort((a, b) => tagLevelNums.get(b) - tagLevelNums.get(a))) {
     const num = tagLevelNums.get(tag_name);
@@ -230,8 +231,7 @@ if (tagInfo) {
 }
 
 if (conditionInfo) {
-  console.log('----------------------------------------');
-  console.log('# Condition info');
+  console.log('## Condition info');
 
   let count3 = 0;
   for (const condition_name of [...conditionLevelNums.keys()].sort((a, b) => conditionLevelNums.get(b) - conditionLevelNums.get(a))) {
@@ -245,5 +245,5 @@ if (conditionInfo) {
 
 console.log('----------------------------------------');
 console.log(`Level nums: ${ids.length}`);
-console.log(`Total Clear-check time: ${totalClearCheckTime / 1000} seconds (${ids.length} levels)`);
+console.log(`Total Clear-check time: ${totalClearCheckTime} ms (${ids.length} levels)`);
 console.log(`Total Attempts (old data): ${totalAttempts} (${ids.length} levels)`);
