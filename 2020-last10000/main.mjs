@@ -143,16 +143,16 @@ for (const id of ids) {
     // if (condition_name === 'Reach the goal without landing after leaving the ground.') {
     // if (tag1_name === 'Link' || tag2_name === 'Link') {
     // if (versus_rating > 6500) {
-    if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
+    // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
     // if (uploader_code === 'V5QDJDMKG' || uploader_code === 'FCC5F831G' || uploader_code === '29BJC44TF') {
     // if (uploader_code === '0YKRH4JDG') {
     // if (attempts < 10) {
     // if (tag1_name === 'Multiplayer versus') {
     // if (uploader_code === 'KVPCT605G') {
-    // if (/KR9KWWTFG|RGD82M0JG|L79LK399G|TXD9GBLHG|0550D63PF|6PCSN6GJF|SV73Q7H0H|K6D3YSTSF|XKXG9XHPG|48665LV0G|WMM082L5G|8JDJ7R7MG|1QGJNY0YF|0YKRH4JDG/.test(uploader_code)) {
+    if (/L79LK399G|0550D63PF|6PCSN6GJF|K6D3YSTSF|WMM082L5G|1QGJNY0YF|0YKRH4JDG/.test(uploader_code)) {
     // if (upload_time > 330 * 1000) {
-      // console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\t${levelName}`);
-      console.log(`${id} ${levelName}`);
+      console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\tupload_time=${upload_time}\t${levelName}`);
+      // console.log(`${id} ${levelName}`);
       count++;
     }
   } catch (err) {
