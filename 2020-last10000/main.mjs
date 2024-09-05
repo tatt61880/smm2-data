@@ -149,7 +149,7 @@ for (const id of ids) {
     // if (attempts < 10) {
     // if (tag1_name === 'Multiplayer versus') {
     // if (uploader_code === 'KVPCT605G') {
-    if (/L79LK399G|0550D63PF|6PCSN6GJF|K6D3YSTSF|WMM082L5G|1QGJNY0YF|0YKRH4JDG/.test(uploader_code)) {
+    // if (/K6D3YSTSF|WMM082L5G|1QGJNY0YF/.test(uploader_code)) {
     // if (upload_time > 330 * 1000) {
       console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\tupload_time=${upload_time}\t${levelName}`);
       // console.log(`${id} ${levelName}`);
@@ -192,7 +192,7 @@ if (themeInfo) {
   }
 }
 
-console.log(`Total Clear-check time: ${totalClearCheckTime / 1000} seconds! (${ids.length} levels)`);
+console.log(`\nTotal Clear-check time: ${totalClearCheckTime / 1000} seconds! (${ids.length} levels)`);
 
 if (makerInfo) {
   console.log('');
