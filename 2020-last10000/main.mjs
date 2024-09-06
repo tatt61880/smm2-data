@@ -140,7 +140,7 @@ for (const id of ids) {
 
     // if (/トロール/.test(levelName)) {
     // if (comments > 10) {
-    // if (condition_name === 'Reach the goal without landing after leaving the ground.') {
+    if (condition_name === 'Reach the goal as Builder Mario.') {
     // if (tag1_name === 'Link' || tag2_name === 'Link') {
     // if (versus_rating > 6500) {
     // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
