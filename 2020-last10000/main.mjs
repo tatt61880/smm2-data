@@ -259,13 +259,16 @@ if (conditionInfo) {
   console.log('## Condition info');
 
   let count3 = 0;
+  let countCc = 0;
   for (const condition_name of [...conditionLevelNums.keys()].sort((a, b) => conditionLevelNums.get(b) - conditionLevelNums.get(a))) {
     if (condition_name === undefined) continue;
     count3++;
     const num = conditionLevelNums.get(condition_name);
+    countCc += num;
     console.log(`${condition_name}: ${num}`);
   }
   console.log(`${count3} types of condition remaining.`);
+  console.log(`${countCc} uncleared levels have clear condition in 2020`);
 }
 
 console.log('----------------------------------------');
