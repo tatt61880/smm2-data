@@ -256,7 +256,7 @@ if (tagInfo) {
 }
 
 if (conditionInfo) {
-  console.log('## Condition info');
+  console.log('## Clear-condition info');
 
   let count3 = 0;
   let countCc = 0;
@@ -267,8 +267,8 @@ if (conditionInfo) {
     countCc += num;
     console.log(`${condition_name}: ${num}`);
   }
-  console.log(`${count3} types of condition remaining.`);
-  console.log(`${countCc} uncleared levels have clear condition in 2020`);
+  console.log(`${count3} types of clear-condition remaining.`);
+  console.log(`${countCc} uncleared levels have clear-condition in 2020`);
 }
 
 console.log('----------------------------------------');
