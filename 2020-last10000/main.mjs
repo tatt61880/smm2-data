@@ -140,7 +140,7 @@ for (const id of ids) {
 
     // if (/トロール/.test(levelName)) {
     // if (comments > 10) {
-    if (condition_name === 'Reach the goal as Builder Mario.') {
+    if (condition_name === 'Reach the goal while holding a Koopa Shell.') {
     // if (tag1_name === 'Link' || tag2_name === 'Link') {
     // if (versus_rating > 6500) {
     // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
@@ -256,7 +256,7 @@ if (tagInfo) {
 }
 
 if (conditionInfo) {
-  console.log('## Clear-condition info');
+  console.log(`## Clear-condition info for last ${ids.length} levels in 2020 :zeropercent:`);
 
   let count3 = 0;
   let countCc = 0;
