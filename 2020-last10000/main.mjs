@@ -12,7 +12,7 @@ const countryInfo = true;
 const styleInfo = true;
 const themeInfo = true;
 const makerInfo = true;
-const dateInfo = true;
+const dateInfo = false;
 const tagInfo = true;
 const conditionInfo = true;
 
