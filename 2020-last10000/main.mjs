@@ -46,7 +46,7 @@ for (const id of ids) {
     const uploaded = json.uploaded; // 投稿日時の Unix Time
 
     const date = json.uploaded_pretty.split(' ')[0];
-    const upload_time = json.upload_time; // Clear check time. 10000 = 10 seconds.
+    const upload_time = json.upload_time; // Clear-check time. 10000 = 10 seconds.
     const style_name = json.game_style_name; // 'SMB1', 'SMB3', 'SMW', 'NSMBU', 'SM3DW'
     const theme_name = json.theme_name; // 'Castle', 'Ghost house', 'Airship', 'Overworld', 'Sky', 'Desert', 'Snow', 'Underground'
 
@@ -261,7 +261,7 @@ if (dateInfo) {
 }
 
 if (timeInfo) {
-  console.log('## Clear check time info');
+  console.log('## Clear-check time info');
 
   let idx = 0;
   for (const num of ccTimeNums) {
