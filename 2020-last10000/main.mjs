@@ -15,6 +15,7 @@ const styleInfo = true;
 const themeInfo = true;
 const makerInfo = true;
 const dateInfo = false;
+const timeInfo = true;
 const tagInfo = true;
 const conditionInfo = true;
 
@@ -24,6 +25,8 @@ const themeLevelNums = new Map();
 const makerLevelNums = new Map();
 const makerCodeToName = new Map();
 const dateLevelNums = new Map();
+const ccTimeNums = [];
+const ccTimeIntervalSec = 10;
 const tagLevelNums = new Map();
 const conditionLevelNums = new Map();
 
@@ -43,7 +46,7 @@ for (const id of ids) {
     const uploaded = json.uploaded; // 投稿日時の Unix Time
 
     const date = json.uploaded_pretty.split(' ')[0];
-    const upload_time = json.upload_time; // 10000 = 10 seconds.
+    const upload_time = json.upload_time; // Clear check time. 10000 = 10 seconds.
     const style_name = json.game_style_name; // 'SMB1', 'SMB3', 'SMW', 'NSMBU', 'SM3DW'
     const theme_name = json.theme_name; // 'Castle', 'Ghost house', 'Airship', 'Overworld', 'Sky', 'Desert', 'Snow', 'Underground'
 
@@ -109,6 +112,15 @@ for (const id of ids) {
           dateLevelNums.set(date, dateLevelNums.get(date) + 1);
         } else {
           dateLevelNums.set(date, 1);
+        }
+      }
+
+      if (timeInfo) {
+        const idx = Math.floor(upload_time / (ccTimeIntervalSec * 1000));
+        if (ccTimeNums[idx] === undefined) {
+          ccTimeNums[idx] = 1;
+        } else {
+          ccTimeNums[idx]++;
         }
       }
 
@@ -245,6 +257,16 @@ if (dateInfo) {
   for (const date of [...dateLevelNums.keys()].sort((a, b) => dateLevelNums.get(b) - dateLevelNums.get(a))) {
     const num = dateLevelNums.get(date);
     console.log(`${date}: ${num}`);
+  }
+}
+
+if (timeInfo) {
+  console.log('## Clear check time info');
+
+  let idx = 0;
+  for (const num of ccTimeNums) {
+    console.log(`${idx * ccTimeIntervalSec}.000 - ${(idx + 1) * ccTimeIntervalSec - 1}.999: ${num ?? 0}`);
+    idx++;
   }
 }
 
