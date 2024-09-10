@@ -268,6 +268,7 @@ if (timeInfo) {
     console.log(`${idx * ccTimeIntervalSec}.000 - ${(idx + 1) * ccTimeIntervalSec - 1}.999: ${num ?? 0}`);
     idx++;
   }
+  console.log(`Total Clear-check time: ${totalClearCheckTime / 1000} seconds! (${ids.length} levels)`);
 }
 
 if (tagInfo) {
