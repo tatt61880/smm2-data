@@ -252,6 +252,7 @@ if (makerInfo) {
 }
 
 if (dateInfo) {
+  console.log('');
   console.log('## Date info');
 
   for (const date of [...dateLevelNums.keys()].sort((a, b) => dateLevelNums.get(b) - dateLevelNums.get(a))) {
@@ -261,6 +262,7 @@ if (dateInfo) {
 }
 
 if (timeInfo) {
+  console.log('');
   console.log('## Clear-check time info');
 
   let idx = 0;
@@ -272,6 +274,7 @@ if (timeInfo) {
 }
 
 if (tagInfo) {
+  console.log('');
   console.log('## Tag info');
 
   for (const tag_name of [...tagLevelNums.keys()].sort((a, b) => tagLevelNums.get(b) - tagLevelNums.get(a))) {
@@ -281,6 +284,7 @@ if (tagInfo) {
 }
 
 if (conditionInfo) {
+  console.log('');
   console.log(`## Clear-condition info for last ${ids.length} levels in 2020 :zeropercent:`);
 
   let count3 = 0;
