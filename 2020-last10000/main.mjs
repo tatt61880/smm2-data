@@ -156,7 +156,8 @@ for (const id of ids) {
     // if (comments > 10) {
     // if (condition_name === 'Reach the goal while holding a Koopa Shell.') {
     // if (tag1_name === 'Link' || tag2_name === 'Link') {
-    if (versus_rating > 6500) {
+    // if (versus_rating > 6500) {
+    if (clears !== 0) {
     // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
     // if (attempts < 10) {
     // if (tag1_name === 'Multiplayer versus') {
