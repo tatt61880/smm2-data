@@ -21,7 +21,7 @@ for (let id of ids) {
   count++;
   if (count % 100 !== 0 && count !== ids.length) continue;
 
-  console.log(`count = ${count}`);
+  console.log(`Fetching levels total: ${count}`);
   if (breakFlag) break;
 
   const url = `https://tgrcode.com/mm2/level_info_multiple/${idsParam}`;
