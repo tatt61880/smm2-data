@@ -154,12 +154,10 @@ for (const id of ids) {
 
     // if (/トロール/.test(levelName)) {
     // if (comments > 10) {
-    if (condition_name === 'Reach the goal while holding a Koopa Shell.') {
+    // if (condition_name === 'Reach the goal while holding a Koopa Shell.') {
     // if (tag1_name === 'Link' || tag2_name === 'Link') {
-    // if (versus_rating > 6500) {
+    if (versus_rating > 6500) {
     // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
-    // if (uploader_code === 'V5QDJDMKG' || uploader_code === 'FCC5F831G' || uploader_code === '29BJC44TF') {
-    // if (uploader_code === '0YKRH4JDG') {
     // if (attempts < 10) {
     // if (tag1_name === 'Multiplayer versus') {
     // if (uploader_code === 'KVPCT605G') {

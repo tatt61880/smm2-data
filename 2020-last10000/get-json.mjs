@@ -44,8 +44,7 @@ for (let id of ids) {
     res.on('end', function () {
       fs.writeFileSync(outputFilename, body);
     });
-  })
-    .on('error', (e) => {
-      console.error(e);
-    });
+  }).on('error', (e) => {
+    console.error(e);
+  });
 }
