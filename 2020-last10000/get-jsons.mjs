@@ -19,44 +19,43 @@ for (let id of ids) {
   idsParam += id;
 
   count++;
+  if (count % 100 !== 0 && count !== ids.length) continue;
 
-  if (count % 100 === 0 || count === ids.length) {
-    console.log(`count = ${count}`);
-    if (breakFlag) break;
+  console.log(`count = ${count}`);
+  if (breakFlag) break;
 
-    const url = `https://tgrcode.com/mm2/level_info_multiple/${idsParam}`;
-    idsParam = '';
+  const url = `https://tgrcode.com/mm2/level_info_multiple/${idsParam}`;
+  idsParam = '';
 
-    if (waitFlag) {
-      await setTimeout(20000);
-    } else {
-      waitFlag = true;
+  if (waitFlag) {
+    await setTimeout(20000);
+  } else {
+    waitFlag = true;
+  }
+
+  https.get(url, (res) => {
+    if (res.statusCode !== 200) {
+      console.error('Error');
+      breakFlag = true;
+      process.exitCode = 1;
+      return;
     }
 
-    https.get(url, (res) => {
-      if (res.statusCode !== 200) {
-        console.error('Error');
-        breakFlag = true;
-        process.exitCode = 1;
-        return;
-      }
+    let body = '';
 
-      let body = '';
-
-      res.on('data', function (d) {
-        body += d;
-      });
-
-      res.on('end', function () {
-        const jsons = JSON.parse(body).courses;
-        for (const json of jsons) {
-          const courseId = json.course_id;
-          const outputFilename = `./json_uncleared/${courseId}.json`;
-          fs.writeFileSync(outputFilename, JSON.stringify(json));
-        }
-      });
-    }).on('error', (e) => {
-      console.error(e);
+    res.on('data', function (d) {
+      body += d;
     });
-  }
+
+    res.on('end', function () {
+      const jsons = JSON.parse(body).courses;
+      for (const json of jsons) {
+        const courseId = json.course_id;
+        const outputFilename = `./json/${courseId}.json`;
+        fs.writeFileSync(outputFilename, JSON.stringify(json));
+      }
+    });
+  }).on('error', (e) => {
+    console.error(e);
+  });
 }
