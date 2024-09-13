@@ -4,3 +4,6 @@ all:
 	node main.mjs
 	node get-json.mjs
 	node clear-check.mjs
+
+temp:
+	perl ranking.pl NSMBU-Castle

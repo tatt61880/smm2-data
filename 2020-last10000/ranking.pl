@@ -85,14 +85,15 @@ my @unclearedLevels;
     close FIN;
 }
 
-my $unclearedNum = 1000;
+my $totalNum = @clearedLevels + @unclearedLevels;
+my $unclearedNum = @unclearedLevels;
 
 {
-    my $output = "output\\ranking-${style}-1000.txt";
+    my $output = "output\\ranking-${style}-$totalNum.txt";
     open FOUT, ">$output" or die;
     binmode FOUT, ":utf8";
 
-    print FOUT "Contributor ranking for last 1000 levels of 2020 ${style}. :Toadette:\n";
+    print FOUT "Contributor ranking for last $totalNum levels of 2020 ${style}. :Toadette:\n";
     print FOUT "```\n";
 
     for my $userName (sort {
@@ -101,7 +102,6 @@ my $unclearedNum = 1000;
         return $userMinNum{$b} <=> $userMinNum{$a};
     } keys %userNum) {
         my $num = $userNum{$userName};
-        $unclearedNum -= $num;
         my $minNum = $userMinNum{$userName};
 
         if ($userMinNum{$userName} == 0) {
@@ -130,6 +130,33 @@ my $unclearedNum = 1000;
 
     for my $levelId (@unclearedLevels) {
         print FOUT "$levelId\n";
+    }
+
+    close FOUT;
+}
+
+{
+    my $output = "output\\ranking-uncleared-levels.txt";
+    open FOUT, ">$output" or die;
+    binmode FOUT, ":utf8";
+
+    for my $levelId (@unclearedLevels) {
+        print FOUT "$levelId\n";
+    }
+
+    close FOUT;
+}
+
+
+{
+    my $output = "output\\ranking-cleared-levels.txt";
+    open FOUT, ">$output" or die;
+    binmode FOUT, ":utf8";
+
+    for my $levelId (sort {$levelsNum{$a} <=> $levelsNum{$b}} @clearedLevels) {
+        my $user = $levelsUser{$levelId};
+        my $num = $levelsNum{$levelId};
+        print FOUT "$levelId\t$num\t$user\n";
     }
 
     close FOUT;
