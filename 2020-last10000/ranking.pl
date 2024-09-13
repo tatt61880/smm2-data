@@ -124,19 +124,7 @@ my $unclearedNum = @unclearedLevels;
 }
 
 {
-    my $output = "output\\uncleared-levels-${style}.txt";
-    open FOUT, ">$output" or die;
-    binmode FOUT, ":utf8";
-
-    for my $levelId (@unclearedLevels) {
-        print FOUT "$levelId\n";
-    }
-
-    close FOUT;
-}
-
-{
-    my $output = "output\\ranking-uncleared-levels.txt";
+    my $output = "output\\ranking-temp-uncleared-levels.txt";
     open FOUT, ">$output" or die;
     binmode FOUT, ":utf8";
 
@@ -149,7 +137,7 @@ my $unclearedNum = @unclearedLevels;
 
 
 {
-    my $output = "output\\ranking-cleared-levels.txt";
+    my $output = "output\\ranking-temp-cleared-levels.txt";
     open FOUT, ">$output" or die;
     binmode FOUT, ":utf8";
 
