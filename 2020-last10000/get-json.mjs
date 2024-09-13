@@ -27,9 +27,9 @@ for (let id of ids) {
       idsParam += ',';
     }
     idsParam += id;
+    count++;
   }
 
-  count++;
   if (count % 100 !== 0 && countAll !== ids.length) continue;
 
   console.log(`Fetching levels total: ${count}`);
