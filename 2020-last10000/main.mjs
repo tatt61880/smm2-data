@@ -154,7 +154,9 @@ for (const id of ids) {
 
     // if (/トロール/.test(levelName)) {
     // if (comments > 10) {
-    // if (condition_name === 'Reach the goal while holding a Koopa Shell.') {
+    // if (condition_name === 'Reach the goal after defeating at least/all (n) Hammer Bro(s.).') {
+    // if (condition_name === 'Reach the goal after defeating at least/all (n) Monty Mole(s).') {
+    // if (condition_name === 'Reach the goal while holding a Trampoline.') {
     // if (tag1_name === 'Link' || tag2_name === 'Link') {
     // if (versus_rating > 6500) {
     if (clears !== 0) {
@@ -209,7 +211,7 @@ console.log(`\nTotal Clear-check time: ${totalClearCheckTime / 1000} seconds! ($
 
 if (makerInfo) {
   console.log('');
-  console.log('## Maker info');
+  console.log('## Maker info for last ${ids.length} levels in 2020 :zeropercent:');
   let count2 = 0;
   const levelNumMap = new Map();
   const threshold = 4;
@@ -252,7 +254,7 @@ if (makerInfo) {
 
 if (dateInfo) {
   console.log('');
-  console.log('## Date info');
+  console.log('## Date info for last ${ids.length} levels in 2020 :zeropercent:');
 
   for (const date of [...dateLevelNums.keys()].sort((a, b) => dateLevelNums.get(b) - dateLevelNums.get(a))) {
     const num = dateLevelNums.get(date);
@@ -262,7 +264,7 @@ if (dateInfo) {
 
 if (timeInfo) {
   console.log('');
-  console.log('## Clear-check time info');
+  console.log('## Clear-check time info for last ${ids.length} levels in 2020 :zeropercent:');
   console.log('```');
 
   let idx = 0;
@@ -276,7 +278,7 @@ if (timeInfo) {
 
 if (tagInfo) {
   console.log('');
-  console.log('## Tag info');
+  console.log('## Tag info for last ${ids.length} levels in 2020 :zeropercent:');
 
   for (const tag_name of [...tagLevelNums.keys()].sort((a, b) => tagLevelNums.get(b) - tagLevelNums.get(a))) {
     const num = tagLevelNums.get(tag_name);
