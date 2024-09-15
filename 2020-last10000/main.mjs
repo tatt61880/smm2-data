@@ -211,7 +211,7 @@ console.log(`\nTotal Clear-check time: ${totalClearCheckTime / 1000} seconds! ($
 
 if (makerInfo) {
   console.log('');
-  console.log('## Maker info for last ${ids.length} levels in 2020 :zeropercent:');
+  console.log(`## Maker info for last ${ids.length} levels in 2020 :zeropercent:`);
   let count2 = 0;
   const levelNumMap = new Map();
   const threshold = 4;
@@ -254,7 +254,7 @@ if (makerInfo) {
 
 if (dateInfo) {
   console.log('');
-  console.log('## Date info for last ${ids.length} levels in 2020 :zeropercent:');
+  console.log(`## Date info for last ${ids.length} levels in 2020 :zeropercent:`);
 
   for (const date of [...dateLevelNums.keys()].sort((a, b) => dateLevelNums.get(b) - dateLevelNums.get(a))) {
     const num = dateLevelNums.get(date);
@@ -264,7 +264,7 @@ if (dateInfo) {
 
 if (timeInfo) {
   console.log('');
-  console.log('## Clear-check time info for last ${ids.length} levels in 2020 :zeropercent:');
+  console.log(`## Clear-check time info for last ${ids.length} levels in 2020 :zeropercent:`);
   console.log('```');
 
   let idx = 0;
@@ -278,7 +278,7 @@ if (timeInfo) {
 
 if (tagInfo) {
   console.log('');
-  console.log('## Tag info for last ${ids.length} levels in 2020 :zeropercent:');
+  console.log(`## Tag info for last ${ids.length} levels in 2020 :zeropercent:`);
 
   for (const tag_name of [...tagLevelNums.keys()].sort((a, b) => tagLevelNums.get(b) - tagLevelNums.get(a))) {
     const num = tagLevelNums.get(tag_name);
