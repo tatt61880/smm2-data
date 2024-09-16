@@ -7,3 +7,6 @@ all:
 
 temp:
 	perl ranking.pl NSMBU-Castle
+
+fetch:
+	node get-jsons.mjs

@@ -19,28 +19,20 @@ for (let id of ids) {
   idsParam += id;
 
   count++;
-  if (count % 100 !== 0 && count !== ids.length) continue;
-
-  console.log(`Fetching levels total: ${count}`);
+  if (count % 200 !== 0 && count !== ids.length) continue;
   if (breakFlag) break;
 
-  const url = `https://tgrcode.com/mm2/level_info_multiple/${idsParam}`;
-  idsParam = '';
-
   if (waitFlag) {
-    await setTimeout(20000);
+    await setTimeout(10000);
   } else {
     waitFlag = true;
   }
 
-  https.get(url, (res) => {
-    if (res.statusCode !== 200) {
-      console.error('Error');
-      breakFlag = true;
-      process.exitCode = 1;
-      return;
-    }
+  console.log(`Fetching levels total: ${count}`);
+  const url = `https://tgrcode.com/mm2/level_info_multiple/${idsParam}`;
+  idsParam = '';
 
+  https.get(url, (res) => {
     let body = '';
 
     res.on('data', function (d) {
@@ -48,6 +40,13 @@ for (let id of ids) {
     });
 
     res.on('end', function () {
+      if (res.statusCode !== 200) {
+        console.error(`Error: statusCode = ${res.statusCode}, ${body}`);
+        breakFlag = true;
+        process.exitCode = 1;
+        return;
+      }
+
       const jsons = JSON.parse(body).courses;
       for (const json of jsons) {
         const courseId = json.course_id;
