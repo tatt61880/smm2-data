@@ -2,6 +2,11 @@ import https from 'https';
 import fs from 'fs';
 import { setTimeout } from 'node:timers/promises';
 
+const outputDir = 'json';
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir);
+}
+
 const idsText = fs.readFileSync('./output/uncleared-levels.txt', 'utf-8');
 const ids = idsText.split(/\r?\n/).filter((line) => /^\w{3}-\w{3}-\w{3}$/.test(line));
 
@@ -50,7 +55,7 @@ for (let id of ids) {
       const jsons = JSON.parse(body).courses;
       for (const json of jsons) {
         const courseId = json.course_id;
-        const outputFilename = `./json/${courseId}.json`;
+        const outputFilename = `./${outputDir}/${courseId}.json`;
         fs.writeFileSync(outputFilename, JSON.stringify(json));
       }
     });

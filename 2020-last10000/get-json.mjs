@@ -2,6 +2,11 @@ import https from 'https';
 import fs from 'fs';
 import { setTimeout } from 'node:timers/promises';
 
+const outputDir = 'json_cleared';
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir);
+}
+
 // const idsText = fs.readFileSync('./input/level-ids.txt', 'utf-8');
 const idsText = fs.readFileSync('./output/cleared-levels.txt', 'utf-8');
 const ids = idsText.split(/\r?\n/).filter((line) => /^\w{3}-\w{3}-\w{3}$/.test(line));
@@ -15,7 +20,7 @@ let countAll = 0;
 
 for (let id of ids) {
   id = id.replaceAll('-', '');
-  const filename = `./json_cleared/${id}.json`;
+  const filename = `./${outputDir}/${id}.json`;
 
   countAll++;
   if (fs.existsSync(filename)) {
@@ -61,7 +66,7 @@ for (let id of ids) {
       const jsons = JSON.parse(body).courses;
       for (const json of jsons) {
         const courseId = json.course_id;
-        const outputFilename = `./json_cleared/${courseId}.json`;
+        const outputFilename = `./${outputDir}/${courseId}.json`;
         fs.writeFileSync(outputFilename, JSON.stringify(json));
       }
     });
