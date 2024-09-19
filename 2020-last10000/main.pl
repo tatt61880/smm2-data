@@ -68,8 +68,8 @@ my @clearedLevels;
 my @unclearedLevels;
 
 {
-    my $levels = "input\\level-ids.txt";
-    open FIN, "<$levels" or die;
+    my $levelsFile = "input\\level-ids.txt";
+    open FIN, "<$levelsFile" or die;
     binmode FIN, ":utf8";
 
     while(<FIN>) {
