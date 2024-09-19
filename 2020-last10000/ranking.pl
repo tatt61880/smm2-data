@@ -9,6 +9,7 @@ my %levelsNum;
 my %userMinNum;
 
 my $style = shift @ARGV;
+my $levelNum = shift @ARGV;
 
 {
     my $input = "input\\discord-log.txt";
@@ -54,7 +55,7 @@ my @clearedLevels;
 my @unclearedLevels;
 
 {
-    my $levels = "input\\level-ids-${style}-last-1000.txt";
+    my $levels = "input\\level-ids-${style}-last-${levelNum}.txt";
     open FIN, "<$levels" or die;
     binmode FIN, ":utf8";
 
