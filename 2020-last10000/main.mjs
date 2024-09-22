@@ -33,6 +33,7 @@ const conditionLevelNums = new Map();
 let count = 0;
 let totalClearCheckTime = 0;
 let totalAttempts = 0;
+let clearedNum = 0;
 for (const id of ids) {
   const idShort = id.replaceAll('-', '');
   const filename = `./json/${idShort}.json`;
@@ -153,6 +154,7 @@ for (const id of ids) {
     totalAttempts += attempts;
 
     if (clears !== 0) {
+      clearedNum++;
       const filenameCleared = `./json_cleared/${idShort}.json`;
       if (!fs.existsSync(filenameCleared)) {
         fs.copyFileSync(filename, filenameCleared);
@@ -167,9 +169,10 @@ for (const id of ids) {
     // if (tag1_name === 'Music' || tag2_name === 'Music') {
     // if (versus_rating > 6500) {
     // if (clears !== 0) {
+    if (clears !== 0 && theme_name === 'Airship') {
     // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
     // if (attempts < 10) {
-    if (attempts >= 1000) {
+    // if (attempts >= 1000) {
     // if (tag1_name === 'Multiplayer versus') {
     // if (uploader_code === 'KVPCT605G') {
     // if (/K6D3YSTSF|WMM082L5G|1QGJNY0YF/.test(uploader_code)) {
@@ -184,6 +187,7 @@ for (const id of ids) {
 }
 
 console.log(`count = ${count}`);
+console.log(`clearedNum = ${clearedNum}`);
 
 console.log('');
 console.log(`# Info for last ${ids.length} levels in 2020 :zeropercent:`);
