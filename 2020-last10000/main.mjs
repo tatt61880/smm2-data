@@ -152,6 +152,13 @@ for (const id of ids) {
     totalClearCheckTime += upload_time;
     totalAttempts += attempts;
 
+    if (clears !== 0) {
+      const filenameCleared = `./json_cleared/${idShort}.json`;
+      if (!fs.existsSync(filenameCleared)) {
+        fs.copyFileSync(filename, filenameCleared);
+      }
+    }
+
     // if (/トロール/.test(levelName)) {
     // if (comments > 10) {
     // if (condition_name === 'Reach the goal after defeating at least/all (n) Hammer Bro(s.).') {
