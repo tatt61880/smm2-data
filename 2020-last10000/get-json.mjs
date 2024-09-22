@@ -11,35 +11,33 @@ if (!fs.existsSync(outputDir)) {
 const idsText = fs.readFileSync('./output/cleared-levels.txt', 'utf-8');
 const ids = idsText.split(/\r?\n/).filter((line) => /^\w{3}-\w{3}-\w{3}$/.test(line));
 
-let idsParam = '';
-
-let count = 0;
-let breakFlag = false;
-let waitFlag = false;
-let countAll = 0;
+const idsNewCleared = [];
 
 for (let id of ids) {
   id = id.replaceAll('-', '');
   const filename = `./${outputDir}/${id}.json`;
+  if (fs.existsSync(filename)) continue;
 
-  countAll++;
-  if (fs.existsSync(filename)) {
-    if (countAll !== ids.length || idsParam === '') {
-      continue;
-    }
-  } else {
-    if (idsParam !== '') {
-      idsParam += ',';
-    }
-    idsParam += id;
-    count++;
+  idsNewCleared.push(id);
+}
+
+let idsParam = '';
+let count = 0;
+let breakFlag = false;
+let waitFlag = false;
+
+for (const id of idsNewCleared) {
+  if (idsParam !== '') {
+    idsParam += ',';
   }
+  idsParam += id;
 
-  if (count % 100 !== 0 && countAll !== ids.length) continue;
+  count++;
+  if (count % 200 !== 0 && count !== idsNewCleared.length) continue;
   if (breakFlag) break;
 
   if (waitFlag) {
-    await setTimeout(20000);
+    await setTimeout(10000);
   } else {
     waitFlag = true;
   }
