@@ -187,7 +187,7 @@ for (const id of ids) {
 }
 
 console.log(`count = ${count}`);
-console.log(`clearedNum = ${clearedNum}`);
+console.log(`levels which clears !== 0: ${clearedNum}`);
 
 console.log('');
 console.log(`# Info for last ${ids.length} levels in 2020 :zeropercent:`);
