@@ -14,3 +14,6 @@ temp2:
 
 fetch:
 	node get-jsons.mjs
+
+test:
+	node ranking.mjs SMW 1000
