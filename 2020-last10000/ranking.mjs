@@ -140,6 +140,7 @@ const unclearedNum = unclearedLevels.length;
 
 {
   const nameId = {};
+  const idName = {};
   for (const levelId of clearedLevels) {
     const levelIdShort = levelId.replaceAll('-', '');
     const filename = `./json_cleared/${levelIdShort}.json`;
@@ -157,5 +158,14 @@ const unclearedNum = unclearedLevels.length;
         console.error(`Error: ${userName} code1 = ${nameId[userName]} code2 = ${code}`);
       }
     }
+
+    if (idName[code] === undefined) {
+      idName[code] = userName;
+    } else {
+      if (idName[code] !== userName) {
+        console.error(`Error: UserCode ${code} Name1 = ${idName[code]} Name2 = ${userName}`);
+      }
+    }
+
   }
 }
