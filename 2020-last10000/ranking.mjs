@@ -29,10 +29,10 @@ const levelNum = process.argv[3];
 
       if (levelsUser[levelId] !== undefined) {
         if (levelsUser[levelId] !== userName) {
-          console.error(`There are multi result for one level (${levelId}) and their user name of the clears aren't same. ${levelsUser[levelId]} !== ${userName}`);
+          // console.error(`There are multi result for one level (${levelId}) and their user name of the clears aren't same. ${levelsUser[levelId]} !== ${userName}`);
         }
         if (levelsNum[levelId] !== undefined && levelsNum[levelId] !== num) {
-          console.error(`There are multi result for one level (${levelId}): ${levelsNum[levelId]} != ${num}`);
+          // console.error(`There are multi result for one level (${levelId}): ${levelsNum[levelId]} != ${num}`);
         }
       } else {
         levelsUser[levelId] = userName;
