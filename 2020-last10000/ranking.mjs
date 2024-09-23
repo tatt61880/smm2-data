@@ -162,10 +162,9 @@ const unclearedNum = unclearedLevels.length;
     if (idName[code] === undefined) {
       idName[code] = userName;
     } else {
-      if (idName[code] !== userName) {
-        console.error(`Error: UserCode ${code} Name1 = ${idName[code]} Name2 = ${userName}`);
+      if (code !== undefined && idName[code] !== userName) {
+        console.error(`Error: UserCode ${code} has another name: Name1 = ${idName[code]}, Name2 = ${userName}`);
       }
     }
-
   }
 }
