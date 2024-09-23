@@ -130,10 +130,32 @@ const unclearedNum = unclearedLevels.length;
   const fd = fs.openSync(outputFilename, 'w');
 
   for (const levelId of clearedLevels.sort((a, b) => levelsNum[a] - levelsNum[b])) {
-    const user = levelsUser[levelId];
+    const userName = levelsUser[levelId];
     const num = levelsNum[levelId];
-    fs.writeSync(fd, `${levelId}\t${num}\t${user}\n`);
+    fs.writeSync(fd, `${levelId}\t${num}\t${userName}\n`);
   }
 
   fs.closeSync(fd);
+}
+
+{
+  const nameId = {};
+  for (const levelId of clearedLevels) {
+    const levelIdShort = levelId.replaceAll('-', '');
+    const filename = `./json_cleared/${levelIdShort}.json`;
+
+    const jsonText = fs.readFileSync(filename, 'utf-8');
+    const json = JSON.parse(jsonText);
+
+    const userName = levelsUser[levelId];
+    const code = json?.first_completer?.code;
+
+    if (nameId[userName] === undefined) {
+      nameId[userName] = code;
+    } else {
+      if (nameId[userName] !== code) {
+        console.error(`Error: ${userName} code1 = ${nameId[userName]} code2 = ${code}`);
+      }
+    }
+  }
 }
