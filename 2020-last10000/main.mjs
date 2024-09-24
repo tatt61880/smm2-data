@@ -223,10 +223,9 @@ console.log(`\nTotal Clear-check time: ${totalClearCheckTime / 1000} seconds! ($
 
 if (makerInfo) {
   console.log('');
-  console.log(`## Maker info for last ${ids.length} levels in 2020 :zeropercent:`);
   let count2 = 0;
   const levelNumMap = new Map();
-  const threshold = 4;
+  const threshold = 3;
   let current = -1;
   for (const uploader_code of [...makerLevelNums.keys()].sort((a, b) => makerLevelNums.get(b) - makerLevelNums.get(a))) {
     const name = makerCodeToName.get(uploader_code);
@@ -238,20 +237,24 @@ if (makerInfo) {
     }
     if (num >= threshold) {
       if (current !== num) {
-        if (current !== -1) {
+        if (current === -1) {
+          console.log(`## Maker info for last ${ids.length} levels in 2020 :zeropercent:`);
+        } else {
           console.log('```');
         }
         current = num;
-        console.log(`## Makers with ${num} levels`);
+        console.log(`### Makers with ${num} levels`);
         console.log('```');
       }
       console.log(`${uploader_code}: ${name}`);
       count2++;
     }
   }
-  console.log('```');
+  if (current !== -1) {
+    console.log('```');
+  }
 
-  console.log('### Levels: Makers');
+  console.log(`### Levels: Makers (last ${ids.length} levels in 2020)`);
   let sum = 0;
   for (const levelNum of [...levelNumMap.keys()].sort((a, b) => levelNumMap.get(a) - levelNumMap.get(b))) {
     const makerNum = levelNumMap.get(levelNum);
