@@ -168,11 +168,12 @@ for (const id of ids) {
     // if (condition_name === 'Reach the goal while holding a Trampoline.') {
     // if (tag1_name === 'Music' || tag2_name === 'Music') {
     // if (versus_rating > 6500) {
-    // if (clears !== 0) {
-    if (clears !== 0 && theme_name === 'Airship') {
+    if (clears !== 0) {
+    // if (clears !== 0 && theme_name === 'Airship') {
     // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
     // if (attempts < 10) {
     // if (attempts >= 1000) {
+    // if (800 < attempts && attempts < 1000) {
     // if (tag1_name === 'Multiplayer versus') {
     // if (uploader_code === 'KVPCT605G') {
     // if (/K6D3YSTSF|WMM082L5G|1QGJNY0YF/.test(uploader_code)) {
@@ -225,7 +226,7 @@ if (makerInfo) {
   console.log('');
   let count2 = 0;
   const levelNumMap = new Map();
-  const threshold = 3;
+  const threshold = 4;
   let current = -1;
   for (const uploader_code of [...makerLevelNums.keys()].sort((a, b) => makerLevelNums.get(b) - makerLevelNums.get(a))) {
     const name = makerCodeToName.get(uploader_code);
