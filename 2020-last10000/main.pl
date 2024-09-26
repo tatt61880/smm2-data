@@ -28,6 +28,9 @@ my %userMinNum;
             my $num = $1 . $2;
 
             if (defined $levelsUser{$levelId}) {
+                if ($num > $levelsNum{$levelId}) {
+                    $levelsNum{$levelId} = $num;
+                }
                 if ($levelsUser{$levelId} ne $userName) {
                     print STDERR "There are multi result for one level ($levelId) and their user name of the clears aren't same. $levelsUser{$levelId} ne $userName\n";
                 }
