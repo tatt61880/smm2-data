@@ -169,6 +169,7 @@ for (const id of ids) {
     // if (tag1_name === 'Music' || tag2_name === 'Music') {
     // if (versus_rating > 6500) {
     if (clears !== 0) {
+    // if (style_name === 'NSMBU') {
     // if (clears !== 0 && theme_name === 'Airship') {
     // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
     // if (attempts < 10) {
@@ -178,8 +179,9 @@ for (const id of ids) {
     // if (uploader_code === 'KVPCT605G') {
     // if (/K6D3YSTSF|WMM082L5G|1QGJNY0YF/.test(uploader_code)) {
     // if (upload_time > 330 * 1000) {
-      console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\tcc-time=${upload_time / 1000}\t${levelName}`);
+      // console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\tcc-time=${upload_time / 1000}\t${levelName}`);
       // console.log(`${id} ${levelName}`);
+      console.log(`${id}`);
       count++;
     }
   } catch (err) {
