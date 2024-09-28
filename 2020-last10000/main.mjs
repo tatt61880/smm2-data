@@ -32,7 +32,7 @@ const conditionLevelNums = new Map();
 
 const targetYear = 2020;
 
-if (dateInfo) {
+{
   const dt = new Date(targetYear, 0, 1);
   while (true) {
     const d = dt.getDate();
@@ -40,11 +40,9 @@ if (dateInfo) {
     const yyyy = dt.getFullYear();
     if (yyyy !== targetYear) break;
     const dateStr = `${d}-${m}-${yyyy}`;
-    // console.log(dateStr);
     dateLevelNums.set(dateStr, 0);
     dt.setDate(dt.getDate() + 1);
   }
-  console.log(Array.from(dateLevelNums.keys()).length);
 }
 
 let count = 0;
@@ -125,7 +123,7 @@ for (const id of ids) {
         }
       }
 
-      if (dateInfo) {
+      {
         if (dateLevelNums.has(date)) {
           dateLevelNums.set(date, dateLevelNums.get(date) + 1);
         } else {
@@ -295,6 +293,18 @@ if (dateInfo) {
     const num = dateLevelNums.get(date);
     console.log(`${date}: ${num}`);
   }
+}
+
+{
+  const outputFilename = 'output\\date-info.txt';
+  const fd = fs.openSync(outputFilename, 'w');
+
+  for (const date of [...dateLevelNums.keys()].sort((a, b) => dateLevelNums.get(b) - dateLevelNums.get(a))) {
+    const num = dateLevelNums.get(date);
+    fs.writeSync(fd, `${date}: ${num}\n`);
+  }
+
+  fs.closeSync(fd);
 }
 
 if (timeInfo) {
