@@ -14,7 +14,7 @@ const countryInfo = true;
 const styleInfo = true;
 const themeInfo = true;
 const makerInfo = true;
-const dateInfo = false;
+const dateInfo = true;
 const timeInfo = true;
 const tagInfo = true;
 const conditionInfo = true;
@@ -29,6 +29,23 @@ const ccTimeNums = [];
 const ccTimeIntervalSec = 10;
 const tagLevelNums = new Map();
 const conditionLevelNums = new Map();
+
+const targetYear = 2020;
+
+if (dateInfo) {
+  const dt = new Date(targetYear, 0, 1);
+  while (true) {
+    const d = dt.getDate();
+    const m = dt.getMonth() + 1;
+    const yyyy = dt.getFullYear();
+    if (yyyy !== targetYear) break;
+    const dateStr = `${d}-${m}-${yyyy}`;
+    // console.log(dateStr);
+    dateLevelNums.set(dateStr, 0);
+    dt.setDate(dt.getDate() + 1);
+  }
+  console.log(Array.from(dateLevelNums.keys()).length);
+}
 
 let count = 0;
 let totalClearCheckTime = 0;
@@ -193,7 +210,7 @@ console.log(`count = ${count}`);
 console.log(`levels which clears !== 0: ${clearedNum}`);
 
 console.log('');
-console.log(`# Info for last ${ids.length} levels in 2020 :zeropercent:`);
+console.log(`# Info for last ${ids.length} levels in ${targetYear} :zeropercent:`);
 
 if (countryInfo) {
   console.log('## Country info');
@@ -241,7 +258,7 @@ if (makerInfo) {
     if (num >= threshold) {
       if (current !== num) {
         if (current === -1) {
-          console.log(`## Maker info for last ${ids.length} levels in 2020 :zeropercent:`);
+          console.log(`## Maker info for last ${ids.length} levels in ${targetYear} :zeropercent:`);
         } else {
           console.log('```');
         }
@@ -257,7 +274,7 @@ if (makerInfo) {
     console.log('```');
   }
 
-  console.log(`### Levels: Makers (last ${ids.length} levels in 2020)`);
+  console.log(`### Levels: Makers (last ${ids.length} levels in ${targetYear})`);
   let sum = 0;
   for (const levelNum of [...levelNumMap.keys()].sort((a, b) => levelNumMap.get(a) - levelNumMap.get(b))) {
     const makerNum = levelNumMap.get(levelNum);
@@ -272,7 +289,7 @@ if (makerInfo) {
 
 if (dateInfo) {
   console.log('');
-  console.log(`## Date info for last ${ids.length} levels in 2020 :zeropercent:`);
+  console.log(`## Date info for last ${ids.length} levels in ${targetYear} :zeropercent:`);
 
   for (const date of [...dateLevelNums.keys()].sort((a, b) => dateLevelNums.get(b) - dateLevelNums.get(a))) {
     const num = dateLevelNums.get(date);
@@ -282,7 +299,7 @@ if (dateInfo) {
 
 if (timeInfo) {
   console.log('');
-  console.log(`## Clear-check time info for last ${ids.length} levels in 2020 :zeropercent:`);
+  console.log(`## Clear-check time info for last ${ids.length} levels in ${targetYear} :zeropercent:`);
   console.log('```');
 
   let idx = 0;
@@ -296,7 +313,7 @@ if (timeInfo) {
 
 if (tagInfo) {
   console.log('');
-  console.log(`## Tag info for last ${ids.length} levels in 2020 :zeropercent:`);
+  console.log(`## Tag info for last ${ids.length} levels in ${targetYear} :zeropercent:`);
 
   for (const tag_name of [...tagLevelNums.keys()].sort((a, b) => tagLevelNums.get(b) - tagLevelNums.get(a))) {
     const num = tagLevelNums.get(tag_name);
@@ -306,7 +323,7 @@ if (tagInfo) {
 
 if (conditionInfo) {
   console.log('');
-  console.log(`## Clear-condition info for last ${ids.length} levels in 2020 :zeropercent:`);
+  console.log(`## Clear-condition info for last ${ids.length} levels in ${targetYear} :zeropercent:`);
 
   let count3 = 0;
   let countCc = 0;
@@ -318,7 +335,7 @@ if (conditionInfo) {
     console.log(`${condition_name}: ${num}`);
   }
   console.log(`${count3} types of clear-condition remaining.`);
-  console.log(`${countCc} uncleared levels have clear-condition in 2020`);
+  console.log(`${countCc} uncleared levels have clear-condition in ${targetYear}`);
 }
 
 console.log('----------------------------------------');
