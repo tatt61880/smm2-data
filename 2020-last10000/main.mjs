@@ -45,6 +45,8 @@ const targetYear = 2020;
   }
 }
 
+const dateLevel = {};
+
 let count = 0;
 let totalClearCheckTime = 0;
 let totalAttempts = 0;
@@ -129,6 +131,7 @@ for (const id of ids) {
         } else {
           dateLevelNums.set(date, 1);
         }
+        dateLevel[date] = id;
       }
 
       if (timeInfo) {
@@ -291,7 +294,11 @@ if (dateInfo) {
 
   for (const date of [...dateLevelNums.keys()].sort((a, b) => dateLevelNums.get(b) - dateLevelNums.get(a))) {
     const num = dateLevelNums.get(date);
-    console.log(`${date}: ${num}`);
+    if (num === 1) {
+      console.log(`${date}: ${num} (${dateLevel[date]})`);
+    } else {
+      console.log(`${date}: ${num}`);
+    }
   }
 }
 
