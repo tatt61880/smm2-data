@@ -184,23 +184,24 @@ for (const id of ids) {
     // if (condition_name === 'Reach the goal after defeating at least/all (n) Hammer Bro(s.).') {
     // if (condition_name === 'Reach the goal after defeating at least/all (n) Monty Mole(s).') {
     // if (condition_name === 'Reach the goal while holding a Trampoline.') {
-    // if (tag1_name === 'Music' || tag2_name === 'Music') {
+    // if (tag1_name === 'Shooter' || tag2_name === 'Shooter') {
     // if (versus_rating > 6500) {
-    if (clears !== 0) {
+    // if (clears !== 0) {
     // if (style_name === 'NSMBU') {
     // if (clears !== 0 && theme_name === 'Airship') {
     // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
     // if (attempts < 10) {
     // if (attempts >= 1000) {
+    if (date === '25-4-2020') {
     // if (800 < attempts && attempts < 1000) {
     // if (tag1_name === 'Multiplayer versus') {
     // if (uploader_code === 'KVPCT605G') {
     // if (/K6D3YSTSF|WMM082L5G|1QGJNY0YF/.test(uploader_code)) {
     // if (upload_time > 180 * 1000) {
     // if (60 * 1000 < upload_time && upload_time < 70 * 1000) {
-      // console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\tcc-time=${upload_time / 1000}\t${levelName}`);
+      console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\tcc-time=${upload_time / 1000}\t${levelName}`);
       // console.log(`${id} ${levelName}`);
-      console.log(`${id}\t${json?.first_completer?.name}`);
+      // console.log(`${id}\t${json?.first_completer?.name}`);
       count++;
     }
   } catch (err) {
