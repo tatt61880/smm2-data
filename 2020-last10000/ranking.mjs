@@ -87,7 +87,8 @@ const unclearedNum = unclearedLevels.length;
   const outputFilename = `output\\ranking-${style}-${totalNum}.txt`;
   const fd = fs.openSync(outputFilename, 'w');
 
-  fs.writeSync(fd, `Contributor ranking for last ${totalNum} levels of 2020 ${style}. :Toadette:\n`);
+  const styleInfo = style === 'ALL' ? '' : ` ${style}`;
+  fs.writeSync(fd, `Contributor ranking for last ${totalNum} levels of 2020${styleInfo}. :Toadette:\n`);
   fs.writeSync(fd, '```\n');
 
   for (const userName of Object.keys(userNum).sort((a, b) => {
