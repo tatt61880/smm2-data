@@ -5,10 +5,11 @@ all:
 	node clear-check.mjs
 	node ranking.mjs SMW 1000
 	node ranking.mjs NSMBU-Castle 1000
+	node ranking.mjs NSMBU-Castle 100
 	node ranking.mjs NSMBU 1000
 
 temp:
-	node ranking.mjs SMW 1000
+	node ranking.mjs NSMBU-Castle 1000
 
 old:
 	node ranking.mjs SM3DW 1000
