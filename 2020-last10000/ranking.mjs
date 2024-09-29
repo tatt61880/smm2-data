@@ -155,7 +155,7 @@ const unclearedNum = unclearedLevels.length;
       nameId[userName] = code;
     } else {
       if (nameId[userName] !== code) {
-        console.error(`Error: ${userName} code1 = ${nameId[userName]} code2 = ${code}`);
+        console.error(`Error: UserName ${userName} has another code: Code1 = ${nameId[userName]} Code2 = ${code}`);
       }
     }
 
