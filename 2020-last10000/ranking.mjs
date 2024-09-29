@@ -151,19 +151,21 @@ const unclearedNum = unclearedLevels.length;
     const userName = levelsUser[levelId];
     const code = json?.first_completer?.code;
 
-    if (nameId[userName] === undefined) {
-      nameId[userName] = code;
-    } else {
-      if (nameId[userName] !== code) {
-        console.error(`Error: UserName ${userName} has another code: Code1 = ${nameId[userName]} Code2 = ${code}`);
+    if (code !== 'W3S3SDYBG') { // ハッカーのクリアは次の人のクリアにするためjsonとデータが合いません。そのため、ハッカーのコードの場合はチェックを飛ばします。
+      if (nameId[userName] === undefined) {
+        nameId[userName] = code;
+      } else {
+        if (nameId[userName] !== code) {
+          console.error(`Error: UserName ${userName} has another code: Code1 = ${nameId[userName]} Code2 = ${code}`);
+        }
       }
-    }
 
-    if (idName[code] === undefined) {
-      idName[code] = userName;
-    } else {
-      if (code !== undefined && idName[code] !== userName) {
-        console.error(`Error: UserCode ${code} has another name: Name1 = ${idName[code]}, Name2 = ${userName}`);
+      if (idName[code] === undefined) {
+        idName[code] = userName;
+      } else {
+        if (code !== undefined && idName[code] !== userName) {
+          console.error(`Error: UserCode ${code} has another name: Name1 = ${idName[code]}, Name2 = ${userName}`);
+        }
       }
     }
   }
