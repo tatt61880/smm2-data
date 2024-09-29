@@ -167,6 +167,11 @@ const unclearedNum = unclearedLevels.length;
           console.error(`Error: UserCode ${code} has another name: Name1 = ${idName[code]}, Name2 = ${userName}`);
         }
       }
+    } else {
+      const name = json?.first_completer?.name;
+      if (code === 'W3S3SDYBG' && name !== 'ΟbamaREAL') {
+        console.log(`Warning! Hacker changed name: ${name}`);
+      }
     }
   }
 }
