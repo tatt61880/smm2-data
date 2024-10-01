@@ -152,7 +152,7 @@ const unclearedNum = unclearedLevels.length;
     const userName = levelsUser[levelId];
     const code = json?.first_completer?.code;
 
-    if (code !== 'W3S3SDYBG') { // ハッカーのクリアは次の人のクリアにするためjsonとデータが合いません。そのため、ハッカーのコードの場合はチェックを飛ばします。
+    if (code !== 'W3S3SDYBG' && code !== '7YGW5R3LG') { // ハッカーのクリアは次の人のクリアにするためjsonとデータが合いません。そのため、ハッカーのコードの場合はチェックを飛ばします。
       if (nameId[userName] === undefined) {
         nameId[userName] = code;
       } else {
@@ -171,6 +171,9 @@ const unclearedNum = unclearedLevels.length;
     } else {
       const name = json?.first_completer?.name;
       if (code === 'W3S3SDYBG' && name !== 'ΟbamaREAL') {
+        console.log(`Warning! Hacker changed name: ${name}`);
+      }
+      if (code === '7YGW5R3LG' && name !== 'ΑpοRed') {
         console.log(`Warning! Hacker changed name: ${name}`);
       }
     }
