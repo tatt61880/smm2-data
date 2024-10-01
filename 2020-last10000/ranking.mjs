@@ -170,11 +170,20 @@ const unclearedNum = unclearedLevels.length;
       }
     } else {
       const name = json?.first_completer?.name;
-      if (code === 'W3S3SDYBG' && name !== 'ΟbamaREAL') {
-        console.log(`Warning! Hacker changed name: ${name}`);
-      }
-      if (code === '7YGW5R3LG' && name !== 'ΑpοRed') {
-        console.log(`Warning! Hacker changed name: ${name}`);
+      const codeName = {
+        'W3S3SDYBG': 'ΟbamaREAL',
+        '7YGW5R3LG': 'ΑpοRed',
+      };
+      for (const playerCode in codeName) {
+        const nplayerName = codeName[code];
+        if (code === playerCode) {
+          if (name !== nplayerName) {
+            console.log(`Warning! Hacker(?) changed name: ${name}`);
+          }
+          if (userName === name) {
+            console.log(`Warning! Hacker(?) name remaining: ${userName}`);
+          }
+        }
       }
     }
   }
