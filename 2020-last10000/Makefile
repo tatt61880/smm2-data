@@ -4,6 +4,7 @@ all:
 	node get-json.mjs
 	node clear-check.mjs
 	node ranking.mjs SMW 1000
+	node ranking.mjs SMW 100
 	node ranking.mjs NSMBU-Castle 1000
 	node ranking.mjs NSMBU-Castle 100
 	node ranking.mjs NSMBU 1000
@@ -11,6 +12,7 @@ all:
 
 temp:
 	node ranking.mjs SMW 1000
+	node ranking.mjs SMW 100
 
 old:
 	node ranking.mjs SM3DW 1000
