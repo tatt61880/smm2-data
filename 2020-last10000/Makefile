@@ -14,6 +14,10 @@ temp:
 	node ranking.mjs SMW 1000
 	node ranking.mjs SMW 100
 
+temp2:
+	node ranking.mjs NSMBU 1000
+	node ranking.mjs NSMBU 100
+
 old:
 	node ranking.mjs SM3DW 1000
 	node ranking.mjs SM3DW 100
