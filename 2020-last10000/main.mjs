@@ -184,9 +184,9 @@ for (const id of ids) {
     // if (condition_name === 'Reach the goal after defeating at least/all (n) Hammer Bro(s.).') {
     // if (condition_name === 'Reach the goal after defeating at least/all (n) Monty Mole(s).') {
     // if (condition_name === 'Reach the goal while holding a Trampoline.') {
-    // if (tag1_name === 'Shooter' || tag2_name === 'Shooter') {
+    if (tag1_name === 'Puzzle solving' || tag2_name === 'Puzzle solving') {
     // if (versus_rating > 6500) {
-    if (clears !== 0) {
+    // if (clears !== 0) {
     // if (style_name === 'NSMBU') {
     // if (clears !== 0 && theme_name === 'Airship') {
     // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
