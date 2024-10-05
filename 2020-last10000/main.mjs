@@ -351,7 +351,7 @@ if (conditionInfo) {
     count3++;
     const num = conditionLevelNums.get(condition_name);
     countCc += num;
-    console.log(`${condition_name}: ${num}`);
+    console.log(`- ${condition_name.replace(/Reach the goal /gi, '')}: ${num}`);
   }
   console.log(`${count3} types of clear-condition remaining.`);
   console.log(`${countCc} uncleared levels have clear-condition in ${targetYear}`);
