@@ -184,9 +184,9 @@ for (const id of ids) {
     // if (condition_name === 'Reach the goal after defeating at least/all (n) Hammer Bro(s.).') {
     // if (condition_name === 'Reach the goal after defeating at least/all (n) Monty Mole(s).') {
     // if (condition_name === 'Reach the goal while holding a Trampoline.') {
-    if (tag1_name === 'Puzzle solving' || tag2_name === 'Puzzle solving') {
+    // if (tag1_name === 'Puzzle solving' || tag2_name === 'Puzzle solving') {
     // if (versus_rating > 6500) {
-    // if (clears !== 0) {
+    if (clears !== 0) {
     // if (style_name === 'NSMBU') {
     // if (clears !== 0 && theme_name === 'Airship') {
     // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
@@ -351,7 +351,10 @@ if (conditionInfo) {
     count3++;
     const num = conditionLevelNums.get(condition_name);
     countCc += num;
-    console.log(`- ${condition_name.replace(/Reach the goal /gi, '')}: ${num}`);
+    let conditionStr = condition_name;
+    conditionStr = conditionStr.replace(/Reach the goal /gi, '');
+    conditionStr = conditionStr.replace(/at least\/all \(n\) /gi, '');
+    console.log(`- ${conditionStr}: ${num}`);
   }
   console.log(`${count3} types of clear-condition remaining.`);
   console.log(`${countCc} uncleared levels have clear-condition in ${targetYear}`);
