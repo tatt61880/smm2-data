@@ -16,6 +16,7 @@ const themeInfo = true;
 const makerInfo = true;
 const dateInfo = true;
 const timeInfo = true;
+const attemptInfo = true;
 const tagInfo = true;
 const conditionInfo = true;
 
@@ -27,6 +28,8 @@ const makerCodeToName = new Map();
 const dateLevelNums = new Map();
 const ccTimeNums = [];
 const ccTimeIntervalSec = 10;
+const attemptNums = [];
+const attemptInterval = 100;
 const tagLevelNums = new Map();
 const conditionLevelNums = new Map();
 
@@ -143,6 +146,15 @@ for (const id of ids) {
         }
       }
 
+      if (attemptInfo) {
+        const idx = Math.floor(attempts / (attemptInterval));
+        if (attemptNums[idx] === undefined) {
+          attemptNums[idx] = 1;
+        } else {
+          attemptNums[idx]++;
+        }
+      }
+
       if (tagInfo) {
         if (tagLevelNums.has(tag1_name)) {
           tagLevelNums.set(tag1_name, tagLevelNums.get(tag1_name) + 1);
@@ -186,12 +198,13 @@ for (const id of ids) {
     // if (condition_name === 'Reach the goal while holding a Trampoline.') {
     // if (tag1_name === 'Puzzle solving' || tag2_name === 'Puzzle solving') {
     // if (versus_rating > 6500) {
-    if (clears !== 0) {
+    // if (clears !== 0) {
     // if (style_name === 'NSMBU') {
     // if (clears !== 0 && theme_name === 'Airship') {
     // if (condition_name === 'Reach the goal as Flying Squirrel Mario.') {
-    // if (attempts < 10) {
-    // if (attempts >= 1000) {
+    // if (100 < attempts && attempts < 200) {
+    // if (attempts < 200) {
+    if (attempts >= 800) {
     // if (date === '25-4-2020') {
     // if (800 < attempts && attempts < 1000) {
     // if (tag1_name === 'Multiplayer versus') {
@@ -199,8 +212,8 @@ for (const id of ids) {
     // if (/K6D3YSTSF|WMM082L5G|1QGJNY0YF/.test(uploader_code)) {
     // if (upload_time > 180 * 1000) {
     // if (60 * 1000 < upload_time && upload_time < 70 * 1000) {
-      console.log(`${id}\t${json?.first_completer?.name}`);
-      // console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\tcc-time=${upload_time / 1000}\t${levelName}`);
+      // console.log(`${id}\t${json?.first_completer?.name}`);
+      console.log(`${id}\tattempts=${attempts}\tvs-rating=${versus_rating}\tcc-time=${upload_time / 1000}\t${levelName}`);
       // console.log(`${id} ${levelName}`);
       count++;
     }
@@ -298,7 +311,7 @@ if (dateInfo) {
     const num = dateLevelNums.get(date);
     if (num === 1) {
       console.log(`${date}: ${num} (${dateLevel[date]})`);
-    } else {
+    } else if (num !== 0) {
       console.log(`${date}: ${num}`);
     }
   }
@@ -328,6 +341,19 @@ if (timeInfo) {
   }
   console.log('```');
   console.log(`Total Clear-check time: ${totalClearCheckTime / 1000} seconds! (${ids.length} levels)`);
+}
+
+if (attemptInfo) {
+  console.log('');
+  console.log(`## Attempt info for last ${ids.length} levels in ${targetYear} :zeropercent:`);
+  console.log('```');
+
+  let idx = 0;
+  for (const num of attemptNums) {
+    console.log(`${idx * attemptInterval} - ${(idx + 1) * attemptInterval - 1}: ${num ?? 0}`);
+    idx++;
+  }
+  console.log('```');
 }
 
 if (tagInfo) {
