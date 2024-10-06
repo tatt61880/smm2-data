@@ -310,7 +310,7 @@ if (dateInfo) {
   for (const date of [...dateLevelNums.keys()].sort((a, b) => dateLevelNums.get(b) - dateLevelNums.get(a))) {
     const num = dateLevelNums.get(date);
     if (num === 1) {
-      console.log(`${date}: ${num} (${dateLevel[date]})`);
+      console.log(`${date}: ${num}\t${dateLevel[date]}`);
     } else if (num !== 0) {
       console.log(`${date}: ${num}`);
     }
@@ -323,7 +323,11 @@ if (dateInfo) {
 
   for (const date of [...dateLevelNums.keys()].sort((a, b) => dateLevelNums.get(b) - dateLevelNums.get(a))) {
     const num = dateLevelNums.get(date);
-    fs.writeSync(fd, `${date}: ${num}\n`);
+    if (num === 1) {
+      fs.writeSync(fd, `${date}: ${num}\t${dateLevel[date]}\n`);
+    } else {
+      fs.writeSync(fd, `${date}: ${num}\n`);
+    }
   }
 
   fs.closeSync(fd);
@@ -354,6 +358,7 @@ if (attemptInfo) {
     idx++;
   }
   console.log('```');
+  console.log(`Total Attempts: ${totalAttempts} (${ids.length} levels)`);
 }
 
 if (tagInfo) {
@@ -389,4 +394,5 @@ if (conditionInfo) {
 console.log('----------------------------------------');
 console.log(`Level nums: ${ids.length}`);
 console.log(`Total Clear-check time: ${totalClearCheckTime} ms (${ids.length} levels)`);
-console.log(`Total Attempts (old data): ${totalAttempts} (${ids.length} levels)`);
+console.log(`Total Attempts: ${totalAttempts} (${ids.length} levels)`);
+console.log('(Note: attempt info can be old)');
