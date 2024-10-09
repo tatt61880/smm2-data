@@ -54,6 +54,7 @@ let count = 0;
 let totalClearCheckTime = 0;
 let totalAttempts = 0;
 let clearedNum = 0;
+const clearedLevels = [];
 for (const id of ids) {
   const idShort = id.replaceAll('-', '');
   const filename = `./json/${idShort}.json`;
@@ -185,6 +186,7 @@ for (const id of ids) {
 
     if (clears !== 0) {
       clearedNum++;
+      clearedLevels.push(id);
       const filenameCleared = `./json_cleared/${idShort}.json`;
       if (!fs.existsSync(filenameCleared)) {
         fs.copyFileSync(filename, filenameCleared);
@@ -224,6 +226,9 @@ for (const id of ids) {
 
 console.log(`count = ${count}`);
 console.log(`levels which clears !== 0: ${clearedNum}`);
+for (const levelId of clearedLevels) {
+  console.log(`${levelId}`);
+}
 
 console.log('');
 console.log(`# Info for last ${ids.length} levels in ${targetYear} :zeropercent:`);
