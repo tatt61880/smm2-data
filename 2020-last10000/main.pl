@@ -24,7 +24,7 @@ my %userMinNum;
             next;
         }
 
-        if (m/^There are (\d*),?(\d+) uncleared 2020 courses!/) {
+        if (m/^There (?:are|is) (\d*),?(\d+) uncleared 2020 courses?!/) {
             my $num = $1 . $2;
 
             if (defined $levelsUser{$levelId}) {
