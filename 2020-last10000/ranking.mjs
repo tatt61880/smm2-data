@@ -23,7 +23,7 @@ const levelNum = process.argv[3];
       continue;
     }
 
-    const result2 = /^There are (\d*),?(\d+) uncleared 2020 courses!/.exec(line);
+    const result2 = /^There (?:are|is) (\d*),?(\d+) uncleared 2020 courses?!/.exec(line);
     if (result2) {
       const num = result2[1] + result2[2];
 
