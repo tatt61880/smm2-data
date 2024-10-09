@@ -98,11 +98,7 @@ const unclearedNum = unclearedLevels.length;
   })) {
     const num = userNum[userName];
 
-    if (userMinNum[userName] === 0) {
-      fs.writeSync(fd, `(${userName}: ${num})\n`);
-    } else {
-      fs.writeSync(fd, `${userName}: ${num}\n`);
-    }
+    fs.writeSync(fd, `${userName}: ${num}\n`);
   }
 
   fs.writeSync(fd, '```\n');
