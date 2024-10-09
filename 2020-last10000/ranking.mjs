@@ -25,7 +25,7 @@ const levelNum = process.argv[3];
 
     const result2 = /^There (?:are|is) (\d*),?(\d+) uncleared 2020 courses?!/.exec(line);
     if (result2) {
-      const num = result2[1] + result2[2];
+      const num = Number(result2[1] + result2[2]);
 
       if (levelsUser[levelId] !== undefined) {
         if (levelsUser[levelId] !== userName) {
